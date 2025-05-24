@@ -1,0 +1,86 @@
+@import "tailwindcss";
+
+/* ====== Color Palette Variables ====== */
+:root {
+  --primary-light: #ffeed4;
+  --primary-neutral: #ebebeb;
+  --primary-dark: #ed642d;
+  --primary-black: #1f1f1d;
+
+  --secondary-orange: #f37f00;
+  --secondary-cream: #e6e7d7;
+  --secondary-olive: #afad96;
+  --secondary-white: #ffffff;
+
+  /* ===== Fonts ===== */
+  --font-plex: "IBM Plex Sans", sans-serif;
+  --font-plex-arabic: "IBM Plex Sans Arabic", sans-serif;
+}
+
+/* ====== Utility Classes ====== */
+
+/* Background */
+.bg-theme {
+  background-color: var(--secondary-orange);
+}
+
+/* Text */
+.text-theme {
+  color: var(--secondary-orange);
+}
+
+/* Border */
+.border-theme {
+  border-color: var(--secondary-orange);
+}
+
+/* Hover Background */
+.hover\:bg-theme:hover {
+  background-color: var(--secondary-orange);
+}
+
+/* Hover Text */
+.hover\:text-theme:hover {
+  color: var(--secondary-orange);
+}
+
+.hover-text-dark:hover {
+  color: var(--primary-black);
+}
+
+.font-theme {
+  font-family: var(--font-plex);
+}
+
+.font-theme-ar {
+  font-family: var(--font-plex-arabic);
+}
+
+/* Prevent background flicker/gaps */
+html,
+body {
+  background-color: var(--primary-black);
+  color: var(--secondary-white); /* optional fallback text color */
+  margin: 0;
+  padding: 0;
+}
+
+
+@layer utilities {
+  .animate-slide-down {
+    animation: slideDown 0.3s ease-out forwards;
+  }
+
+  @keyframes slideDown {
+    from {
+      opacity: 0;
+      transform: translateY(-12px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+}
+
+

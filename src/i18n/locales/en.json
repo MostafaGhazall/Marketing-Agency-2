@@ -1,0 +1,27 @@
+{
+  "nav": {
+    "home": "Home",
+    "about": "About us",
+    "contact": "Contact us"
+  },
+  "home": {
+    "featured": {
+      "title": "FEATURED WORKS",
+      "items": {
+        "Your Other Half": "Your Other Half",
+        "The oldest and newest bank": "The oldest and newest bank",
+        "National Day Project": "National Day Project",
+        "National Project": "National Project",
+        "Ad Legacy": "Ad Legacy"
+      }
+    }
+  },
+  "about": {
+    "title": "Who We Are",
+    "text": "We are a creative marketing agency helping businesses thrive in the digital space."
+  },
+  "contact": {
+    "title": "Get in Touch",
+    "text": "We’d love to hear from you. Contact us for any inquiries."
+  }
+}
