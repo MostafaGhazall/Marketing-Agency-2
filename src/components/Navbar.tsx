@@ -1,8 +1,8 @@
 import { useTranslation } from "react-i18next";
 import { useState, useEffect, useRef } from "react";
+import { Link, useLocation } from "react-router-dom";
 import { HiOutlineMenuAlt3 } from "react-icons/hi";
 import { RxCross2 } from "react-icons/rx";
-import { Link } from "react-router-dom";
 import logo from "/logo2.png";
 
 const Navbar = () => {
@@ -11,7 +11,12 @@ const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
 
-  const isArabic = lang === "ar";
+  /* ───────── current route ───────── */
+  const { pathname } = useLocation();
+  const isHome = pathname === "/" || /^\/(en|ar)\/?$/.test(pathname);
+
+  /* ───────── LTR / RTL ───────── */
+  const isArabic  = lang === "ar";
   const fontClass = isArabic ? "font-theme-ar" : "font-theme";
 
   const changeLanguage = (lng: string) => {
@@ -20,52 +25,59 @@ const Navbar = () => {
     document.dir = lng === "ar" ? "rtl" : "ltr";
   };
 
+  /* keep <html> attrs in sync */
   useEffect(() => {
     document.documentElement.lang = lang;
     document.dir = lang === "ar" ? "rtl" : "ltr";
   }, [lang]);
 
+  /* close dropdown when clicking outside */
   useEffect(() => {
-    const handleClickOutside = (e: MouseEvent) => {
+    const outside = (e: MouseEvent) => {
       if (dropdownRef.current && !dropdownRef.current.contains(e.target as Node)) {
         setMenuOpen(false);
       }
     };
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => document.removeEventListener("mousedown", handleClickOutside);
+    document.addEventListener("mousedown", outside);
+    return () => document.removeEventListener("mousedown", outside);
   }, []);
 
+  /* ───────── position decided per-route ───────── */
+  const positionClass = isHome
+    ? "fixed top-0 left-0"
+    : "absolute top-0 left-0";
+
   return (
-    <header className={`w-full fixed top-0 z-50 text-secondary-orange ${fontClass}`}>
+    <header
+      className={`
+        w-full z-50 bg-transparent text-secondary-orange
+        ${positionClass} ${fontClass}
+      `}
+    >
       <div className="flex items-center justify-between px-8 py-6 relative z-50 bg-transparent">
         {/* Logo */}
         <Link to="/" className="w-24 h-auto block">
           <img src={logo} alt="Mashab Logo" className="w-full object-contain" />
         </Link>
 
-        {/* Lang & Menu Icon */}
+        {/* Lang & Burger */}
         <div className={`flex items-center gap-6 text-base font-semibold text-white ${fontClass}`}>
           <div className="space-x-2 rtl:space-x-reverse">
             <button
               onClick={() => changeLanguage("en")}
-              className={`transform transition-transform hover:scale-110 cursor-pointer ${
-                lang === "en" ? "text-theme" : ""
-              }`}
+              className={`transition hover:scale-110 cursor-pointer ${lang === "en" ? "text-theme" : ""}`}
             >
               ENG
             </button>
             <span>|</span>
             <button
               onClick={() => changeLanguage("ar")}
-              className={`transform transition-transform hover:scale-110 cursor-pointer mr-1.5 ${
-                lang === "ar" ? "text-theme" : ""
-              }`}
+              className={`transition hover:scale-110 mr-1.5 cursor-pointer ${lang === "ar" ? "text-theme" : ""}`}
             >
               AR
             </button>
           </div>
 
-          {/* Burger Icon Toggle */}
           <button
             onClick={() => setMenuOpen(!menuOpen)}
             className="text-3xl transition-transform duration-300 cursor-pointer"
@@ -76,7 +88,7 @@ const Navbar = () => {
         </div>
       </div>
 
-      {/* Dropdown Menu */}
+      {/* Dropdown */}
       {menuOpen && (
         <div
           ref={dropdownRef}
@@ -84,10 +96,10 @@ const Navbar = () => {
         >
           <ul className="flex flex-col gap-6 text-2xl font-medium">
             {[
-              { name: t("nav.home"), to: "/" },
-              { name: t("nav.about"), to: "/about" },
-              { name: t("nav.contact"), to: "/contact" },
-            ].map((item) => (
+              { name: t("nav.home"),    to: "/"       },
+              { name: t("nav.about"),   to: "/about"  },
+              { name: t("nav.contact"), to: "/contact"},
+            ].map(item => (
               <li key={item.to}>
                 <Link
                   to={item.to}

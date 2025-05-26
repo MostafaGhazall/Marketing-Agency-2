@@ -14,14 +14,58 @@
         "National Project": "National Project",
         "Ad Legacy": "Ad Legacy"
       }
+    },
+    "showreel": {
+      "title": "ShowReel",
+      "categories": {
+        "ALL": "All",
+        "Long Term Partnership": "Long Term Partnership",
+        "360 Campaigns": "360 Campaigns",
+        "Strategy Work": "Strategy Work",
+        "Video Based Campaigns": "Video Based Campaigns",
+        "Key Visual Campaigns": "Key Visual Campaigns",
+        "Brand Activation": "Brand Activation",
+        "Seasonal Campaigns": "Seasonal Campaigns"
+      },
+      "items": {
+        "He Walks The Talk": "He Walks The Talk",
+        "You Find Saudi Made": "You Find Saudi Made",
+        "With You Through Out The Journey": "With You Through Out The Journey",
+        "Saudis Our True Wealth": "Saudis Our True Wealth",
+        "Master The Language": "Master The Language",
+        "Emkan From Everywhere": "Emkan From Everywhere",
+        "Follow the Insight": "Follow the Insight",
+        "Beyond the Vision": "Beyond the Vision",
+        "From Riyadh to the World": "From Riyadh to the World",
+        "To The World": "To The World"
+      }
+    },
+    "inNumbers": {
+      "title": "MASHAB In Numbers",
+      "stats": {
+        "years": "Years",
+        "projects": "Projects",
+        "awards": "Awards"
+      }
     }
   },
   "about": {
-    "title": "Who We Are",
-    "text": "We are a creative marketing agency helping businesses thrive in the digital space."
+    "title": "Our Thinking"
   },
   "contact": {
     "title": "Get in Touch",
     "text": "We’d love to hear from you. Contact us for any inquiries."
+  },
+  "footer": {
+    "addressTitle": "Address",
+    "address": "Alnuzha - Riyadh",
+    "socialTitle": "Social Accounts",
+    "pagesTitle": "Pages",
+    "pages": {
+      "home": "Home",
+      "about": "About us",
+      "contact": "Contact us"
+    },
+    "country": "Saudi Arabia - Riyadh"
   }
 }

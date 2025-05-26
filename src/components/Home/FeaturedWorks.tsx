@@ -1,51 +1,83 @@
 import { useNavigate } from "react-router-dom";
-import { useEffect, useRef, useState, useMemo, useCallback } from "react";
+import { useEffect, useRef, useMemo, useCallback } from "react";
 import { useTranslation } from "react-i18next";
 
+/** ─────────────────────────────
+ *  Static carousel data
+ *  ────────────────────────── */
 const featuredItems = [
-  { title: "Your Other Half", image: "/works/work1.jpg", link: "/works/your-other-half" },
+  { title: "Your Other Half",        image: "/works/work1.jpg", link: "/works/your-other-half" },
   { title: "The oldest and newest bank", image: "/works/work2.jpg", link: "/works/alrajhi-bank" },
-  { title: "National Day Project", image: "/works/work3.jpg", link: "/works/national-day" },
-  { title: "National Project", image: "/works/work4.jpg", link: "/works/national" },
-  { title: "Ad Legacy", image: "/works/work5.jpg", link: "/works/ad-legacy" },
+  { title: "National Day Project",   image: "/works/work3.jpg", link: "/works/national-day" },
+  { title: "National Project",       image: "/works/work4.jpg", link: "/works/national" },
+  { title: "Ad Legacy",              image: "/works/work5.jpg", link: "/works/ad-legacy" },
 ];
 
 export default function FeaturedWorks() {
   const { t, i18n } = useTranslation();
-  const navigate = useNavigate();
-  const trackRef = useRef<HTMLDivElement>(null);
-  const [isHovered, setIsHovered] = useState(false);
+  const navigate            = useNavigate();
+  const trackRef            = useRef<HTMLDivElement>(null);
 
-  const isArabic = i18n.language === "ar";
+  /** Persistent, mutable speed value (0.5 px/frame on hover, 1.5 px otherwise) */
+  const speedRef = useRef<number>(1.5);
+
+  /** Helper flags */
+  const isArabic  = i18n.language === "ar";
   const fontClass = isArabic ? "font-theme-ar" : "font-theme";
 
-  const extendedItems = useMemo(() => Array(3).fill(featuredItems).flat(), []);
+  /** Duplicate the items four times so the loop feels endless */
+  const extendedItems = useMemo(() => Array(4).fill(featuredItems).flat(), []);
 
-  const handleMouseEnter = useCallback(() => setIsHovered(true), []);
-  const handleMouseLeave = useCallback(() => setIsHovered(false), []);
-  const handleNavigate = useCallback((link: string) => navigate(link), [navigate]);
+  /** Hover handlers (no re-render) */
+  const handleMouseEnter = () => { speedRef.current = 0.5; };
+  const handleMouseLeave = () => { speedRef.current = 1.5; };
 
+  /** Click-through navigation */
+  const handleNavigate   = useCallback((link: string) => navigate(link), [navigate]);
+
+  /*────────────────────────────────────────────────────────
+   * 1. Re-position the scroll start whenever language flips
+   *────────────────────────────────────────────────────────*/
   useEffect(() => {
-    let animationFrameId: number;
-    const scrollSpeed = () => (isHovered ? 0.5 : 1.5);
+    const track = trackRef.current;
+    if (!track) return;
 
-    const animate = () => {
-      if (trackRef.current) {
-        trackRef.current.scrollLeft += scrollSpeed();
-        if (
-          trackRef.current.scrollLeft >=
-          trackRef.current.scrollWidth - trackRef.current.clientWidth
-        ) {
-          trackRef.current.scrollLeft = 0;
-        }
+    track.scrollLeft = isArabic
+      ? track.scrollWidth - track.clientWidth   // right edge for RTL
+      : 0;                                      // left edge for LTR
+  }, [isArabic]);
+
+  /*────────────────────────────────────────────────────────
+   * 2. Single animation loop — respects RTL and live speed
+   *────────────────────────────────────────────────────────*/
+  useEffect(() => {
+    const track = trackRef.current;
+    if (!track) return;
+
+    const dir        = isArabic ? -1 : 1;                      // pixel delta sign
+    const maxScroll  = () => track.scrollWidth - track.clientWidth;
+
+    let frameId: number;
+    const step = () => {
+      track.scrollLeft += dir * speedRef.current;
+
+      /** seamless wrap-around */
+      if (!isArabic && track.scrollLeft >= maxScroll()) {
+        track.scrollLeft = 0;
+      } else if (isArabic && track.scrollLeft <= 0) {
+        track.scrollLeft = maxScroll();
       }
-      animationFrameId = requestAnimationFrame(animate);
+
+      frameId = requestAnimationFrame(step);
     };
 
-    animationFrameId = requestAnimationFrame(animate);
-    return () => cancelAnimationFrame(animationFrameId);
-  }, [isHovered]);
+    frameId = requestAnimationFrame(step);
+    return () => cancelAnimationFrame(frameId);
+  }, [isArabic]);      // only restarts if direction changes
 
+  /*────────────────────────────────────────────────────────
+   *  Render
+   *────────────────────────────────────────────────────────*/
   return (
     <section className={`w-full overflow-hidden bg-[var(--primary-black)] text-theme ${fontClass} px-0 pt-12 pb-20 md:py-20`}>
       <h2 className="text-3xl md:text-5xl font-bold mb-8 text-center">
@@ -53,10 +85,10 @@ export default function FeaturedWorks() {
       </h2>
 
       <div
-        className="w-full flex gap-2 overflow-hidden"
         ref={trackRef}
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
+        className={`w-full flex gap-2 overflow-hidden ${isArabic ? "flex-row-reverse" : ""}`}
       >
         {extendedItems.map((item, index) => (
           <div

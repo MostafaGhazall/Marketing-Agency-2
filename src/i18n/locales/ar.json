@@ -14,14 +14,58 @@
         "National Project": "مشروع وطني",
         "Ad Legacy": "إرث الإعلان"
       }
+    },
+    "showreel": {
+      "title": "أعمالنا المختارة",
+      "categories": {
+        "ALL": "الكل",
+        "Long Term Partnership": "شراكة طويلة الأمد",
+        "360 Campaigns": "حملات 360",
+        "Strategy Work": "عمل استراتيجي",
+        "Video Based Campaigns": "حملات مرئية",
+        "Key Visual Campaigns": "حملات بصرية رئيسية",
+        "Brand Activation": "تنشيط العلامة التجارية",
+        "Seasonal Campaigns": "حملات موسمية"
+      },
+      "items": {
+        "He Walks The Talk": "هو من يفي بوعوده",
+        "You Find Saudi Made": "تجد السعودي الصنع",
+        "With You Through Out The Journey": "معك طوال الرحلة",
+        "Saudis Our True Wealth": "السعوديون ثروتنا الحقيقية",
+        "Master The Language": "أتقن اللغة",
+        "Emkan From Everywhere": "إمكان من كل مكان",
+        "Follow the Insight": "اتبع البصيرة",
+        "Beyond the Vision": "ما وراء الرؤية",
+        "From Riyadh to the World": "من الرياض إلى العالم",
+        "To The World": "إلى العالم"
+      }
+    },
+    "inNumbers": {
+      "title": "مشب بالأرقام",
+      "stats": {
+        "years": "سنوات",
+        "projects": "مشاريع",
+        "awards": "جوائز"
+      }
     }
   },
   "about": {
-    "title": "من نحن",
-    "text": "نحن وكالة تسويق إبداعية نساعد الشركات على الازدهار في العالم الرقمي."
+    "title": "تفكيرنا"
   },
   "contact": {
     "title": "تواصل معنا",
     "text": "يسعدنا التواصل معك. اتصل بنا لأي استفسار."
+  },
+  "footer": {
+    "addressTitle": "العنوان",
+    "address": "النو́زه - الرياض",
+    "socialTitle": "الحسابات الاجتماعية",
+    "pagesTitle": "الصفحات",
+    "pages": {
+      "home": "الرئيسية",
+      "about": "من نحن",
+      "contact": "اتصل بنا"
+    },
+    "country": "المملكة العربية السعودية - الرياض"
   }
 }
