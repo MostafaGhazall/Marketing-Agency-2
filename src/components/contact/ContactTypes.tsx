@@ -14,7 +14,7 @@ export default function ContactTypes() {
   const { t, i18n } = useTranslation();
   const isArabic = i18n.language === "ar";
   const fontClass = isArabic ? "font-theme-ar" : "font-theme";
-  
+
   const [formKind, setFormKind] = useState<FormKind>("clients");
   const [state, handleSubmit] = useForm(formEndpoints[formKind]);
 
@@ -95,6 +95,14 @@ export default function ContactTypes() {
         onSubmit={handleSubmit}
         className="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-6"
       >
+        {/* Anti-spam: Honeypot */}
+        <input
+          type="text"
+          name="_gotcha"
+          className="hidden"
+          tabIndex={-1}
+          autoComplete="off"
+        />
         {/* Common fields */}
         <Field
           label={t(`contact.${formKind}.name`)}
