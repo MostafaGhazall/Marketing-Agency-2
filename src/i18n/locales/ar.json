@@ -110,7 +110,8 @@
       "organization": "اسم الجهة",
       "possession": "صفة المتواصل",
       "profile": "organization.com",
-      "message": "رسالتك"
+      "message": "رسالتك",
+      "partnership": "فرصة شراكة"
     },
     "successMessage": "شكرًا – سنتواصل معك قريبًا!",
     "clients": {

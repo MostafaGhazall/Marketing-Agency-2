@@ -134,24 +134,32 @@ export default function ShowReelSection() {
     >
       <motion.h2
         className="text-center text-3xl md:text-6xl font-bold mb-10 mt-5"
-        initial={{ opacity: 0, y: 50 }}
-        whileInView={{ opacity: 1, y: 0 }}
+        initial="rest"
+        whileInView="enter"
+        animate="rest"
+        variants={{
+          rest: { opacity: 0, scale: 0.9 },
+          enter: { opacity: 1, scale: 1 },
+        }}
         transition={{ duration: 0.6 }}
         viewport={{ once: false }}
       >
         {t("home.showreel.title")}
       </motion.h2>
 
-      <motion.div
-        className="flex flex-col gap-12 items-center"
-        initial={{ opacity: 0, scale: 0.9 }}
-        whileInView={{ opacity: 1, scale: 1 }}
-        transition={{ duration: 0.6, ease: "easeOut" }}
-        viewport={{ once: false }}
-      >
-        <div
+      <div className="flex flex-col gap-12 items-center">
+        <motion.div
           className="flex flex-wrap justify-center gap-2"
           dir={isArabic ? "rtl" : "ltr"}
+          initial="rest"
+          whileInView="enter"
+          animate="rest"
+          variants={{
+            rest: { opacity: 0, scale: 0.9 },
+            enter: { opacity: 1, scale: 1 },
+          }}
+          transition={{ duration: 0.6 }}
+          viewport={{ once: false }}
         >
           {categories.map((cat) => (
             <button
@@ -167,7 +175,7 @@ export default function ShowReelSection() {
               {t(`home.showreel.categories.${cat}`)}
             </button>
           ))}
-        </div>
+        </motion.div>
 
         <div
           className="grid auto-rows-[170px] sm:auto-rows-[220px] lg:auto-rows-[260px] grid-cols-1 sm:grid-cols-2 lg:grid-cols-6 w-full gap-4 auto-flow-dense"
@@ -181,13 +189,15 @@ export default function ShowReelSection() {
                 i
               )}`}
               initial="rest"
+              whileInView="enter"
               whileHover="hover"
               animate="rest"
-              transition={{ duration: 0.3 }}
               variants={{
-                rest: { scale: 1 },
-                hover: { scale: 1.02 },
+                rest: { opacity: 0, scale: 0.9 },
+                enter: { opacity: 1, scale: 1 },
               }}
+              transition={{ duration: 0.5, delay: i * 0.05 }}
+              viewport={{ once: false }}
             >
               {/* the image */}
               <motion.img
@@ -222,7 +232,7 @@ export default function ShowReelSection() {
             </motion.div>
           ))}
         </div>
-      </motion.div>
+      </div>
     </section>
   );
 }

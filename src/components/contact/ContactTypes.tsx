@@ -5,7 +5,7 @@ import { useTranslation } from "react-i18next";
 type FormKind = "clients" | "vendors" | "join";
 
 const formEndpoints: Record<FormKind, string> = {
-  clients: "https://formspree.io/f/myzwrlke",
+  clients: "myzwrlke",
   vendors: "your-formspree-endpoint-2",
   join: "your-formspree-endpoint-3",
 };
@@ -85,10 +85,7 @@ export default function ContactTypes() {
 
         {formKind === "join" && (
           <p className="inline-block mt-4 px-4 py-2 rounded-md bg-gray-700 text-sm text-theme">
-            {t("contact.join.note")}{" "}
-            <a href="mailto:info@mashab.sa" className="font-semibold">
-              info@mashab.sa
-            </a>
+            {t("contact.join.note")}
           </p>
         )}
       </div>
