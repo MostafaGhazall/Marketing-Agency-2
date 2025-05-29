@@ -1,68 +1,43 @@
 import { useEffect, useRef, useState } from "react";
 import { motion, useAnimation } from "framer-motion";
 import { useInView } from "react-intersection-observer";
+import { useTranslation } from "react-i18next";
 
-/* ───────────── section data ───────────── */
-const sections = [
-  {
-    id: "section-1",
-    title: "Story Tellers",
-    description:
-      "Our communication has storytelling at the core of it, stories that are relevant to our community, stories that can't be faked or created if you don't have the right context. We create opportunities for creative content to turn into brand narratives that evolve into a communication platform.",
-    image: "/about/one.jpg",
-  },
-  {
-    id: "section-2",
-    title: "Experimental & Trendsetters",
-    description:
-      "We open widows for our partners that dares to experiment with us. We create trends that disturbs the market and the category. We Are Created a short film instead of an Ad so we can give the message",
-    image: "/about/two.jpg",
-  },
-  {
-    id: "section-3",
-    title: "Performance And Digital First Environments",
-    description:
-      "Our team understands that having solid creative is mandatory, but with brands that have environments that are performance driven and digital first, our point of views shifts into a creative that works across an eco-system, each touch point has its own DNA that reflects on communication requirements.",
-    image: "/about/three.jpg",
-  },
-  {
-    id: "section-4",
-    title: "Here For The Long Run",
-    description:
-      "Our relations, team structure and procedures are built in a way that will allow us to sustain a relationship with our partners, why? So we can see our shared strategic vision coming to life, we invest in our partners so they can invest in us.",
-    image: "/about/four.jpg",
-  },
-  {
-    id: "section-5",
-    title: "Experienced in high complexity operations",
-    description:
-      "We are equipped strategically and operationally to manage partners of high complexity and maintain a service level and achieve objectives that serves their complex magnitude.",
-    image: "/about/five.jpg",
-  },
-];
+export default function FirstParallax() {
+  const { t, i18n } = useTranslation();
+  const isArabic = i18n.language === "ar";
+  const textAlignClass = isArabic ? "text-right" : "text-left";
+  const fontClass = isArabic ? "font-theme-ar" : "font-theme";
 
-export default function AboutParallax() {
+  const titles = [
+    "Story Tellers",
+    "Experimental & Trendsetters",
+    "Performance And Digital First Environments",
+    "Here For The Long Run",
+    "Experienced in high complexity operations",
+  ];
+
+  const sections = titles.map((title, i) => ({
+    id: `section-${i + 1}`,
+    title: t(`about.FirstParallax.title.${title}`),
+    description: t(`about.FirstParallax.description.${title}`),
+    image: `/about/${["one", "two", "three", "four", "five"][i]}.jpg`,
+  }));
+
   const [activeId, setActiveId] = useState<string | null>(null);
   const containerRef = useRef<HTMLDivElement>(null);
 
-  /* ───────── observer for the right-hand nav ───────── */
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
-        /* keep only those that are on-screen */
         const onscreen = entries.filter((e) => e.isIntersecting);
-
         if (onscreen.length === 0) {
-          /* nothing intersecting → deactivate all */
           setActiveId(null);
           return;
         }
-
-        /* choose the entry with the largest visible area */
         const mostVisible = onscreen.sort(
           (a, b) => b.intersectionRatio - a.intersectionRatio
         )[0];
-
         setActiveId(mostVisible.target.id);
       },
       {
@@ -81,9 +56,10 @@ export default function AboutParallax() {
   return (
     <div
       ref={containerRef}
-      className="relative w-full bg-[var(--primary-black)] text-white font-theme"
+      dir="ltr"
+      className={`relative w-full bg-[var(--primary-black)] text-theme ${fontClass}`}
     >
-      {/* ───────── sticky nav (inside the box) ───────── */}
+      {/* Sidebar Navigation */}
       <aside
         className="
           hidden md:flex flex-col items-end gap-3         
@@ -91,7 +67,7 @@ export default function AboutParallax() {
           right-4 md:right-8 lg:right-16 mr-8   
           top-[33vh] pt-36 pb-40                
           z-20 text-right leading-tight
-       "
+        "
       >
         {sections.map((sec) => (
           <button
@@ -105,7 +81,7 @@ export default function AboutParallax() {
               ${
                 activeId === sec.id
                   ? "text-[var(--secondary-orange)] font-extrabold"
-                  : "text-[var(--secondary-orange)]/40 hover:text-[var(--secondary-orange)]"
+                  : "text-[var(--secondary-light)] hover:text-[var(--secondary-orange)]"
               }`}
           >
             {sec.title}
@@ -113,94 +89,133 @@ export default function AboutParallax() {
         ))}
       </aside>
 
-      {/* ───────── scrollable full-height panels ───────── */}
+      {/* Animated Sections */}
       <div>
-        {sections.map((sec) => {
-          const [ref, inView] = useInView({
-            triggerOnce: true,
-            threshold: 0.2,
-          });
-          const controls = useAnimation();
-          const imageControls = useAnimation();
-
-          useEffect(() => {
-            if (inView) {
-              // Animate text content
-              controls.start({
-                opacity: 1,
-                y: 0,
-                rotateX: 0,
-                transition: {
-                  duration: 1,
-                  ease: "easeOut",
-                },
-              });
-
-              // Animate image
-              imageControls.start({
-                opacity: 1,
-                y: 0,
-                rotateZ: 0,
-                transition: {
-                  duration: 1.2,
-                  ease: "easeOut",
-                  delay: 0.2,
-                },
-              });
-            }
-          }, [inView, controls, imageControls]);
-
-          return (
-            <section
-              key={sec.id}
-              id={sec.id}
-              className="
-                relative min-h-screen flex flex-col items-center md:items-start
-                justify-center px-6 md:px-20 md:pr-[260px] lg:pr-[320px] md:mb-32
-              "
-              ref={ref}
-            >
-              <motion.div
-                initial={{ 
-                  opacity: 0, 
-                  y: 50, 
-                  rotateZ: 3.5 
-                }}
-                animate={imageControls}
-                className="w-full"
-                style={{
-                  transformOrigin: "bottom left"
-                }}
-              >
-                <motion.div
-                  initial={{ opacity: 0, y: 50, rotateX: -5 }}
-                  animate={controls}
-                  className="max-w-3xl mx-auto md:mx-0 text-center md:text-left"
-                >
-                  <h2 className="text-4xl md:text-3xl font-extrabold text-[var(--secondary-orange)] mb-3">
-                    {sec.title}
-                  </h2>
-                  <p className="text-lg md:text-xl leading-relaxed text-white/80 mb-6">
-                    {sec.description}
-                  </p>
-                </motion.div>
-
-                <motion.figure
-                  initial={{ opacity: 0, y: 50, rotateX: -5 }}
-                  animate={controls}
-                  className="w-full flex justify-center md:justify-start"
-                >
-                  <img
-                    src={sec.image}
-                    alt={sec.title}
-                    className="w-full max-w-[720px] h-[380px] object-cover rounded-xl shadow-lg"
-                  />
-                </motion.figure>
-              </motion.div>
-            </section>
-          );
-        })}
+        {sections.map((sec) => (
+          <AnimatedSection
+            key={sec.id}
+            id={sec.id}
+            title={sec.title}
+            description={sec.description}
+            image={sec.image}
+            fontClass={fontClass}
+            textAlignClass={textAlignClass}
+            isArabic={isArabic}
+          />
+        ))}
       </div>
     </div>
+  );
+}
+
+// === Inline Animated Section Component ===
+function AnimatedSection({
+  id,
+  title,
+  description,
+  image,
+  fontClass,
+  textAlignClass,
+  isArabic,
+}: {
+  id: string;
+  title: string;
+  description: string;
+  image: string;
+  fontClass: string;
+  textAlignClass: string;
+  isArabic: boolean;
+}) {
+  const [ref, inView] = useInView({
+    triggerOnce: false,
+    threshold: 0.2,
+  });
+
+  const controls = useAnimation();
+  const imageControls = useAnimation();
+
+  useEffect(() => {
+    if (inView) {
+      controls.start({
+        opacity: 1,
+        y: 0,
+        rotateX: 0,
+        transition: {
+          duration: 1,
+          ease: "easeOut",
+        },
+      });
+
+      imageControls.start({
+        opacity: 1,
+        y: 0,
+        rotateZ: 0,
+        transition: {
+          duration: 1.2,
+          ease: "easeOut",
+          delay: 0.2,
+        },
+      });
+    } else {
+      controls.start({
+        opacity: 0,
+        y: 50,
+        rotateX: -5,
+        transition: {
+          duration: 0.5,
+          ease: "easeIn",
+        },
+      });
+
+      imageControls.start({
+        opacity: 0,
+        y: 50,
+        rotateZ: 3.5,
+        transition: {
+          duration: 0.5,
+          ease: "easeIn",
+        },
+      });
+    }
+  }, [inView, controls, imageControls]);
+
+  return (
+    <section
+      ref={ref}
+      id={id}
+      className="relative min-h-screen flex flex-col items-center md:items-start justify-center px-6 md:px-20 md:pr-[260px] lg:pr-[320px] md:mb-32"
+    >
+      <motion.div
+        initial={{ opacity: 0, y: 50, rotateZ: 3.5 }}
+        animate={imageControls}
+        className="w-full"
+        style={{ transformOrigin: "bottom left" }}
+      >
+        <motion.div
+          initial={{ opacity: 0, y: 50, rotateX: -5 }}
+          animate={controls}
+          className={`max-w-3xl mx-auto md:mx-0 text-center md:text-left ${fontClass} ${isArabic ? "md:pr-12" : ""}`}
+        >
+          <h2 className={`text-4xl md:text-3xl font-extrabold text-theme mb-3 ${textAlignClass}`}>
+            {title}
+          </h2>
+          <p className={`text-lg md:text-xl leading-relaxed text-white/80 mb-6 ${textAlignClass}`}>
+            {description}
+          </p>
+        </motion.div>
+
+        <motion.figure
+          initial={{ opacity: 0, y: 50, rotateX: -5 }}
+          animate={controls}
+          className="w-full flex justify-center md:justify-start"
+        >
+          <img
+            src={image}
+            alt={title}
+            className="w-full max-w-[720px] h-[380px] object-cover rounded-xl shadow-lg"
+          />
+        </motion.figure>
+      </motion.div>
+    </section>
   );
 }

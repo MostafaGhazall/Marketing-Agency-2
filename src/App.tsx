@@ -3,23 +3,23 @@ import {
   Routes,
   Route,
 } from "react-router-dom";
-import Home from './pages/Home';
-import AboutUs from './pages/AboutUs';
-import ContactUs from './pages/ContactUs';
-import Navbar from "./components/Navbar";
-import Footer from "./components/Footer";
 
+import Home from "./pages/Home";
+import AboutUs from "./pages/AboutUs";
+import ContactUs from "./pages/ContactUs";
+
+import Layout from "./components/Layout";
+import ScrollToTop from "./components/ScrollToTop";
 
 function App() {
   return (
     <Router>
-      <Navbar />
+      <ScrollToTop />
       <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/about" element={<AboutUs />} />
-        <Route path="/contact" element={<ContactUs />} />
+        <Route path="/" element={<Layout><Home /></Layout>} />
+        <Route path="/about" element={<Layout><AboutUs /></Layout>} />
+        <Route path="/contact" element={<Layout><ContactUs /></Layout>} />
       </Routes>
-      <Footer />
     </Router>
   );
 }

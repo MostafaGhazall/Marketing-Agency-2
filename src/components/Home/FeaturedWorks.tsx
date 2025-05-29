@@ -79,8 +79,8 @@ export default function FeaturedWorks() {
    *  Render
    *────────────────────────────────────────────────────────*/
   return (
-    <section className={`w-full overflow-hidden bg-[var(--primary-black)] text-theme ${fontClass} px-0 pt-12 pb-20 md:py-20`}>
-      <h2 className="text-3xl md:text-5xl font-bold mb-8 text-center">
+    <section className={`w-full overflow-hidden bg-[var(--primary-black)] text-theme ${fontClass} px-0 pt-20 pb-20 md:py-20`}>
+      <h2 className="text-3xl md:text-5xl font-bold mb-20 text-center">
         {t("home.featured.title")}
       </h2>
 
@@ -101,7 +101,9 @@ export default function FeaturedWorks() {
               alt={t(`home.featured.items.${item.title}`)}
               className="w-full h-full object-cover"
             />
-            <div className={`absolute bottom-4 left-6 text-theme font-bold text-lg md:text-2xl ${fontClass} drop-shadow-sm`}>
+            <div className={`absolute bottom-4 text-theme font-bold text-lg md:text-2xl ${fontClass} ${
+                  isArabic ? "right-6 text-right" : "left-6 text-left"
+                } drop-shadow-sm`}>
               {t(`home.featured.items.${item.title}`)}
             </div>
           </div>

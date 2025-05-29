@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import type { Variants } from "framer-motion";
+import { useTranslation } from "react-i18next";
 
 const clientLogos = [
   { id: 1, type: "private" },
@@ -16,6 +17,7 @@ const clientLogos = [
 ];
 
 export default function Clients() {
+  const { t } = useTranslation();
   const [isTouch, setIsTouch] = useState(false);
   const [filter, setFilter] = useState("all");
 
@@ -46,40 +48,23 @@ export default function Clients() {
   return (
     <section className="w-full px-4 sm:px-6 md:px-10 py-16 bg-[var(--primary-black)] font-theme">
       <div className="max-w-7xl mx-auto text-center mb-10">
-        <h2 className="text-[var(--secondary-yellow)] text-3xl sm:text-4xl md:text-5xl font-bold mb-6 animate-slide-down">
-          Clients
+        <h2 className="text-[var(--primary-light)] text-3xl sm:text-4xl md:text-5xl font-bold mb-6 animate-slide-down">
+          {t("about.clients.title")}
         </h2>
         <div className="flex flex-wrap justify-center gap-4">
-          <button
-            onClick={() => setFilter("all")}
-            className={`px-5 py-2 border border-theme rounded-full font-medium transition-all cursor-pointer ${
-              filter === "all"
-                ? "bg-theme text-[var(--primary-black)]"
-                : "text-theme hover:bg-theme hover-text-dark"
-            }`}
-          >
-            ALL
-          </button>
-          <button
-            onClick={() => setFilter("private")}
-            className={`px-5 py-2 border border-theme rounded-full font-medium transition-all cursor-pointer ${
-              filter === "private"
-                ? "bg-theme text-[var(--primary-black)]"
-                : "text-theme hover:bg-theme hover-text-dark"
-            }`}
-          >
-            Private
-          </button>
-          <button
-            onClick={() => setFilter("government")}
-            className={`px-5 py-2 border border-theme rounded-full font-medium transition-all cursor-pointer ${
-              filter === "government"
-                ? "bg-theme text-[var(--primary-black)]"
-                : "text-theme hover:bg-theme hover-text-dark"
-            }`}
-          >
-            Government
-          </button>
+          {["all", "private", "government"].map((key) => (
+            <button
+              key={key}
+              onClick={() => setFilter(key)}
+              className={`px-5 py-2 border border-theme rounded-lg font-medium transition-all cursor-pointer ${
+                filter === key
+                  ? "bg-[var(--primary-light)] text-[var(--primary-black)]"
+                  : "text-theme bg-transparent hover:shadow-[inset_0_0_20px_rgba(255,238,212,0.6)]"
+              }`}
+            >
+              {t(`about.clients.filters.${key}`)}
+            </button>
+          ))}
         </div>
       </div>
 

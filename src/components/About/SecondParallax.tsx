@@ -1,29 +1,6 @@
 import { useRef } from "react";
 import { motion, useScroll, useTransform, useSpring } from "framer-motion";
-
-/* ---------- DATA ---------- */
-const bubbleLabels = [
-  {
-    label: "Discover",
-    text: "Marketing\nResearch",
-    image: "/about/bubble-yellow.svg",
-  },
-  {
-    label: "Define",
-    text: "Communication Strategy\nMedia Strategy",
-    image: "/about/bubble-yellow.svg",
-  },
-  {
-    label: "Develop",
-    text: "Art & Design\nCampaign Plan & Concept\nProduction Managment",
-    image: "/about/bubble-yellow.svg",
-  },
-  {
-    label: "Distribute",
-    text: "Media Planning & Buying",
-    image: "/about/bubble-yellow.svg",
-  },
-];
+import { useTranslation } from "react-i18next";
 
 /* ---------- geometry (unchanged) ---------- */
 const thetaRanges: [number, number][] = [
@@ -40,11 +17,21 @@ const bubbleTimings: [number, number][] = thetaRanges.map(([f, t]) => {
   offset += slice;
   return w;
 });
-const RADIUS_X = 866;
+const RADIUS_X = 867;
 const RADIUS_Y = 350;
 
 /* ---------- component ---------- */
-export default function OurServicesSection() {
+export default function SecondParallax() {
+  const { t, i18n } = useTranslation();
+  const isArabic = i18n.language === "ar";
+  const fontClass = isArabic ? "font-theme-ar" : "font-theme";
+  const labels = ["Discover", "Define", "Develop", "Distribute"];
+  const bubbleLabels = labels.map((label) => ({
+    label: t(`about.SecondParallax.labels.${label}`),
+    text: t(`about.SecondParallax.text.${label}`),
+    image: "/about/bubble-yellow.png",
+  }));
+
   const ref = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
     target: ref,
@@ -63,8 +50,8 @@ export default function OurServicesSection() {
     >
       {/* ---------- pinned container ---------- */}
       <div className="sticky top-0 h-screen flex flex-col items-center justify-center overflow-hidden">
-        <h2 className="text-4xl sm:text-4xl md:text-6xl lg:text-6xl font-bold text-[var(--secondary-orange)] font-theme mb-6 mt-14">
-          Our Services
+        <h2 className="text-4xl sm:text-4xl md:text-6xl lg:text-6xl font-bold text-theme font-theme mb-6 mt-14">
+          {t("about.SecondParallax.title")}
         </h2>
 
         {/* ---------- dome ---------- */}
@@ -118,10 +105,10 @@ export default function OurServicesSection() {
                     className="w-full h-full object-contain"
                   />
                   <div
-                    className="absolute inset-0 flex items-center justify-center
-                                  text-[var(--primary-black)] font-semibold
-                                  text-2xl sm:text-lg md:text-2xl lg:text-3xl
-                                  tracking-tight text-center px-2"
+                    className={`absolute inset-0 flex items-center justify-center
+                                text-theme font-semibold
+                                text-2xl sm:text-lg md:text-2xl lg:text-3xl
+                                tracking-tight text-center px-2 ${fontClass}`}
                   >
                     {b.label}
                   </div>
@@ -166,9 +153,9 @@ export default function OurServicesSection() {
                 <motion.div
                   key={i}
                   style={{ y, opacity }}
-                  className="absolute left-1/2 -translate-x-1/2 whitespace-pre text-center font-theme
-                             text-2xl sm:text-base md:text-2xl lg:text-3xl
-                             text-[var(--secondary-orange)] mt-30"
+                  className={`absolute left-1/2 -translate-x-1/2 whitespace-pre text-center
+                              text-2xl sm:text-base md:text-2xl lg:text-3xl
+                              text-theme mt-30 ${fontClass}`}
                 >
                   {b.text}
                 </motion.div>

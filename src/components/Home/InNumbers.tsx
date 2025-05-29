@@ -11,14 +11,15 @@ const stats = [
 
 export default function InNumbersSection() {
   const { t, i18n } = useTranslation();
+  const isArabic = i18n.language === "ar";
+  const fontClass = isArabic ? "font-theme-ar" : "font-theme";
+
   const sectionRef = useRef(null);
-  const isInView = useInView(sectionRef, { once: true });
+  const isInView = useInView(sectionRef, { once: false });
   const [startCount, setStartCount] = useState(false);
 
-  const fontClass = i18n.language === "ar" ? "font-theme-ar" : "font-theme";
-
   useEffect(() => {
-    if (isInView) setStartCount(true);
+    setStartCount(isInView); // reset to false when out, true when in
   }, [isInView]);
 
   return (
@@ -36,10 +37,14 @@ export default function InNumbersSection() {
             <div className="text-center px-6 md:px-10">
               <div className="text-4xl md:text-6xl font-bold text-theme">
                 {startCount && (
-                  <CountUp end={stat.end} duration={2} suffix={stat.suffix} />
+                  <CountUp
+                    end={stat.end}
+                    suffix={stat.suffix}
+                    duration={2}
+                  />
                 )}
               </div>
-              <div className="text-white text-lg md:text-xl mt-2">
+              <div className="text-[var(--primary-light)] text-3xl md:text-3xl mt-2">
                 {t(`home.inNumbers.stats.${stat.key}`)}
               </div>
             </div>

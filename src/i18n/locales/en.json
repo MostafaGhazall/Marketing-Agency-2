@@ -5,6 +5,7 @@
     "contact": "Contact us"
   },
   "home": {
+    "order": "Order Video",
     "featured": {
       "title": "FEATURED WORKS",
       "items": {
@@ -37,7 +38,10 @@
         "Follow the Insight": "Follow the Insight",
         "Beyond the Vision": "Beyond the Vision",
         "From Riyadh to the World": "From Riyadh to the World",
-        "To The World": "To The World"
+        "To The World": "To The World",
+        "Living The Summer With You": "Living The Summer With You",
+        "Speak Englsih Like the Movies": "Speak Englsih Like the Movies",
+        "10 Years of Pizza": "10 Years of Pizza"
       }
     },
     "inNumbers": {
@@ -50,11 +54,111 @@
     }
   },
   "about": {
-    "title": "Our Thinking"
+    "title": "Our Thinking",
+    "FirstParallax": {
+      "title": {
+        "Story Tellers": "Story Tellers",
+        "Experimental & Trendsetters": "Experimental & Trendsetters",
+        "Performance And Digital First Environments": "Performance And Digital First Environments",
+        "Here For The Long Run": "Here For The Long Run",
+        "Experienced in high complexity operations": "Experienced in high complexity operations"
+      },
+      "description": {
+        "Story Tellers": "Our communication has storytelling at the core of it, stories that are relevant to our community, stories that can't be faked or created if you don't have the right context. We create opportunities for creative content to turn into brand narratives that evolve into a communication platform.",
+        "Experimental & Trendsetters": "We open widows for our partners that dares to experiment with us. We create trends that disturbs the market and the category. We Are Created a short film instead of an Ad so we can give the message",
+        "Performance And Digital First Environments": "Our team understands that having solid creative is mandatory, but with brands that have environments that are performance driven and digital first, our point of views shifts into a creative that works across an eco-system, each touch point has its own DNA that reflects on communication requirements.",
+        "Here For The Long Run": "Our relations, team structure and procedures are built in a way that will allow us to sustain a relationship with our partners, why? So we can see our shared strategic vision coming to life, we invest in our partners so they can invest in us.",
+        "Experienced in high complexity operations": "We are equipped strategically and operationally to manage partners of high complexity and maintain a service level and achieve objectives that serves their complex magnitude."
+      }
+    },
+    "SecondParallax": {
+      "title": "Our Services",
+      "labels": {
+        "Discover": "Discover",
+        "Define": "Define",
+        "Develop": "Develop",
+        "Distribute": "Distribute"
+      },
+      "text": {
+        "Discover": "Marketing\nResearch",
+        "Define": "Communication Strategy\nMedia Strategy",
+        "Develop": "Art & Design\nCampaign Plan & Concept\nProduction Managment",
+        "Distribute": "Media Planning & Buying"
+      }
+    },
+    "clients": {
+      "title": "Clients",
+      "filters": {
+        "all": "ALL",
+        "private": "Private",
+        "government": "Government"
+      }
+    }
   },
   "contact": {
-    "title": "Get in Touch",
-    "text": "We’d love to hear from you. Contact us for any inquiries."
+    "title": "CONTACT US",
+    "clients": {
+      "name": "Contact Name*",
+      "email": "Contact Email*",
+      "number": "Contact Number*",
+      "organization": "Organization*",
+      "sector": "Sector*",
+      "campaign": "Campaign Type*",
+      "scope": "Scope of work*",
+      "budget": "Budget*",
+      "message": "Other information",
+      "send": "SEND MESSAGE",
+      "info": "Other Information"
+    },
+    "vendors": {
+      "name": "Contact Name*",
+      "email": "Contact Email*",
+      "number": "Contact Number*",
+      "organization": "Organization Name*",
+      "possession": "Contact Possession*",
+      "profile": "Organization Profile*",
+      "partnership": "Partnership Opportunity*",
+      "send": "SEND MESSAGE"
+    },
+    "join": {
+      "name": "Name*",
+      "email": "Email*",
+      "number": "Contact Number*",
+      "message": "Other Information*",
+      "note": "Email us your CV at: info@mashab.sa",
+      "send": "SEND MESSAGE"
+    },
+    "types": {
+      "clients": "Clients",
+      "vendors": "Vendors",
+      "join": "Join MASHAB"
+    },
+    "buttons": {
+      "clients": "Clients",
+      "vendors": "Vendors",
+      "join": "Join MASHAB"
+    },
+    "cvInfo": "Email us your CV at: info@mashab.sa",
+    "select": {
+      "campaign": "Select Campaign Type",
+      "sector": "Select Sector",
+      "services": "Select Services"
+    },
+    "options": {
+      "sectors": ["Retail", "Healthcare", "Government"],
+      "campaignTypes": ["360 Campaign", "Med Complexity", "Low Complexity"],
+      "scopes": ["Media Buying", "Video Production", "Campaign Concept"],
+      "budgets": ["400 – 600 k", "600 – 800 k", "800 – 1 300 k", "1 300 k+"]
+    },
+    "placeholders": {
+      "name": "Full Name",
+      "phone": "966 50 000 0000",
+      "email": "example@email.com",
+      "organization": "Organization Name",
+      "possession": "Contact Possession",
+      "profile": "organization.com",
+      "message": "Your message"
+    }
   },
   "footer": {
     "addressTitle": "Address",

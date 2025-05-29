@@ -5,7 +5,7 @@
   --primary-light: #ffeed4;
   --primary-neutral: #ebebeb;
   --primary-dark: #ed642d;
-  --primary-black: #1f1f1d;
+  --primary-black: #000000;
 
   --secondary-orange: #f37f00;
   --secondary-cream: #e6e7d7;
@@ -26,12 +26,12 @@
 
 /* Text */
 .text-theme {
-  color: var(--secondary-orange);
+  color: var(--primary-light);
 }
 
 /* Border */
 .border-theme {
-  border-color: var(--secondary-orange);
+  border-color: var(--secondary-light);
 }
 
 /* Hover Background */
@@ -65,6 +65,16 @@ body {
   padding: 0;
 }
 
+body::-webkit-scrollbar {
+  width: 8px;
+}
+body::-webkit-scrollbar-thumb {
+  background-color: #444;
+  border-radius: 4px;
+}
+body::-webkit-scrollbar-track {
+  background-color: #1f1f1d;
+}
 
 @layer utilities {
   .animate-slide-down {
@@ -82,5 +92,3 @@ body {
     }
   }
 }
-
-

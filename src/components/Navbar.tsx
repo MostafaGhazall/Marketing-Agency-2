@@ -54,9 +54,9 @@ const Navbar = () => {
         ${positionClass} ${fontClass}
       `}
     >
-      <div className="flex items-center justify-between px-8 py-6 relative z-50 bg-transparent">
+      <div className="flex items-center justify-between px-8 py-3 relative z-50 bg-transparent">
         {/* Logo */}
-        <Link to="/" className="w-24 h-auto block">
+        <Link to="/" className="w-18 h-auto block mt-2">
           <img src={logo} alt="Mashab Logo" className="w-full object-contain" />
         </Link>
 
@@ -80,10 +80,10 @@ const Navbar = () => {
 
           <button
             onClick={() => setMenuOpen(!menuOpen)}
-            className="text-3xl transition-transform duration-300 cursor-pointer"
+            className="text-4xl transition-transform duration-300 cursor-pointer"
             aria-label="Menu"
           >
-            {menuOpen ? <RxCross2 className="rotate-90" /> : <HiOutlineMenuAlt3 />}
+            {menuOpen ? <RxCross2 className="rotate-90" /> : <HiOutlineMenuAlt3 className={`${isArabic ? "scale-x-[-1]" : ""}`}/>}
           </button>
         </div>
       </div>
@@ -92,7 +92,7 @@ const Navbar = () => {
       {menuOpen && (
         <div
           ref={dropdownRef}
-          className={`absolute left-0 top-0 w-full bg-[var(--primary-black)] text-theme px-8 pt-[100px] pb-6 shadow-lg animate-slide-down z-40 ${fontClass}`}
+          className={`absolute left-0 top-0 w-full bg-[var(--primary-black)] text-theme px-8 pt-[110px] pb-8 shadow-lg animate-slide-down z-40 ${fontClass}`}
         >
           <ul className="flex flex-col gap-6 text-2xl font-medium">
             {[
