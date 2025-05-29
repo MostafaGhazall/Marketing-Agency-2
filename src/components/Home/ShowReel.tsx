@@ -224,8 +224,8 @@ export default function ShowReelSection() {
               {/* title on top */}
               <span
                 className={`absolute bottom-4 ${
-                  isArabic ? "right-6 text-right" : "left-6 text-left"
-                } z-10 font-bold text-lg md:text-xl drop-shadow`}
+                  isArabic ? "right-1 md:right-3 text-right" : "left-1 md:left-3 text-left"
+                } z-10 font-bold text-sm md:text-xl drop-shadow`}
               >
                 {t(`home.showreel.items.${item.title}`)}
               </span>
