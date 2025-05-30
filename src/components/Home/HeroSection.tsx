@@ -8,7 +8,7 @@ export default function HeroSection() {
   return (
     <section className="relative md:mt-[-50px] md:h-[110vh] w-full overflow-hidden flex items-center justify-center">
       {/* Video with side padding */}
-      <div className="w-full h-[400px] mt-[100px] md:h-full md:px-16 relative z-0">
+      <div className="w-full h-[400px] mt-[100px] md:h-full relative z-0">
         <video
           className="w-full h-full object-cover"
           autoPlay

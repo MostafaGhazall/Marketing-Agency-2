@@ -46,11 +46,11 @@ export default function SecondParallax() {
   return (
     <section
       ref={ref}
-      className="relative h-[850vh] -mt-20 bg-[var(--primary-black)] text-[var(--secondary-white)] font-theme"
+      className={`relative h-[850vh] -mt-20 bg-[var(--primary-black)] text-[var(--secondary-white)] ${fontClass}`}
     >
       {/* ---------- pinned container ---------- */}
       <div className="sticky top-0 h-screen flex flex-col items-center justify-center overflow-hidden">
-        <h2 className="text-4xl sm:text-4xl md:text-6xl lg:text-6xl font-bold text-theme font-theme mb-6 mt-14">
+        <h2 className="text-4xl sm:text-4xl md:text-6xl lg:text-6xl font-bold text-theme mb-6 mt-14">
           {t("about.SecondParallax.title")}
         </h2>
 
@@ -153,9 +153,9 @@ export default function SecondParallax() {
                 <motion.div
                   key={i}
                   style={{ y, opacity }}
-                  className={`absolute left-1/2 -translate-x-1/2 whitespace-pre text-center
+                  className="absolute left-1/2 -translate-x-1/2 whitespace-pre text-center
                               text-2xl sm:text-base md:text-2xl lg:text-3xl
-                              text-theme mt-30 ${fontClass}`}
+                              text-theme mt-30"
                 >
                   {b.text}
                 </motion.div>

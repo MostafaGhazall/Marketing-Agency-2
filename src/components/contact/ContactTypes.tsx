@@ -230,7 +230,7 @@ export default function ContactTypes() {
     className?: string;
   }) {
     return (
-      <div className={`flex flex-col gap-1 ${className}`}>
+      <div className={`flex flex-col gap-1 ${className} ${fontClass}`}>
         <label>{label}</label>
         <input
           type={type}
@@ -256,7 +256,7 @@ export default function ContactTypes() {
     className?: string;
   }) {
     return (
-      <div className={`flex flex-col gap-1 ${className}`}>
+      <div className={`flex flex-col gap-1 ${className} ${fontClass}`}>
         <label>{label}</label>
         <select
           name={name}
@@ -287,7 +287,7 @@ export default function ContactTypes() {
     className?: string;
   }) {
     return (
-      <div className={`flex flex-col gap-1 md:col-span-2 ${className}`}>
+      <div className={`flex flex-col gap-1 md:col-span-2 ${className} ${fontClass}`}>
         <label>{label}</label>
         <textarea
           name={name}

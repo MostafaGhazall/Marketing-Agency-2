@@ -17,7 +17,9 @@ const clientLogos = [
 ];
 
 export default function Clients() {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
+  const isArabic = i18n.language === "ar";
+  const fontClass = isArabic ? "font-theme-ar" : "font-theme";
   const [isTouch, setIsTouch] = useState(false);
   const [filter, setFilter] = useState("all");
 
@@ -43,10 +45,12 @@ export default function Clients() {
   };
 
   const filteredLogos =
-    filter === "all" ? clientLogos : clientLogos.filter((logo) => logo.type === filter);
+    filter === "all"
+      ? clientLogos
+      : clientLogos.filter((logo) => logo.type === filter);
 
   return (
-    <section className="w-full px-4 sm:px-6 md:px-10 py-16 bg-[var(--primary-black)] font-theme">
+    <section className={`w-full px-4 sm:px-6 md:px-10 py-16 bg-[var(--primary-black)] ${fontClass}`}>
       <div className="max-w-7xl mx-auto text-center mb-10">
         <h2 className="text-[var(--primary-light)] text-3xl sm:text-4xl md:text-5xl font-bold mb-6 animate-slide-down">
           {t("about.clients.title")}
