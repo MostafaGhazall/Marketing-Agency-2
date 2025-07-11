@@ -1,5 +1,5 @@
 import { useTranslation } from "react-i18next";
-import aboutBg from "/about/about.jpg";
+import aboutBg from "/about/our-thinking.png";
 import FirstParallax from "../components/About/FirstParallax.tsx";
 import SecondParllax from "../components/About/SecondParallax.tsx";
 import InNumbers from "../components/About/InNumbers.tsx";

@@ -5,15 +5,17 @@
     "contact": "Contact us"
   },
   "home": {
-    "order": "Order Video",
+    "order": "Order Now",
     "featured": {
       "title": "FEATURED WORKS",
       "items": {
-        "Your Other Half": "Your Other Half",
-        "The oldest and newest bank": "The oldest and newest bank",
-        "National Day Project": "National Day Project",
-        "National Project": "National Project",
-        "Ad Legacy": "Ad Legacy"
+        "saldwish | MBC GROUP": "saldwish | MBC GROUP",
+        "Akhdod Club": "Akhdod Club",
+        "Jeddah History": "Jeddah History",
+        "Saudi Founding Day": "Saudi Founding Day"
+      },
+      "label": {
+        "With MASHAB": "With MASHAB"
       }
     },
     "showreel": {
@@ -21,29 +23,28 @@
       "categories": {
         "ALL": "All",
         "Long Term Partnership": "Long Term Partnership",
-        "360 Campaigns": "360 Campaigns",
         "Strategy Work": "Strategy Work",
         "Video Based Campaigns": "Video Based Campaigns",
-        "Key Visual Campaigns": "Key Visual Campaigns",
         "Brand Activation": "Brand Activation",
         "Seasonal Campaigns": "Seasonal Campaigns"
       },
       "items": {
-        "He Walks The Talk": "He Walks The Talk",
-        "You Find Saudi Made": "You Find Saudi Made",
-        "With You Through Out The Journey": "With You Through Out The Journey",
-        "Saudis Our True Wealth": "Saudis Our True Wealth",
-        "Master The Language": "Master The Language",
-        "Emkan From Everywhere": "Emkan From Everywhere",
-        "Follow the Insight": "Follow the Insight",
-        "Beyond the Vision": "Beyond the Vision",
-        "From Riyadh to the World": "From Riyadh to the World",
-        "To The World": "To The World",
-        "Living The Summer With You": "Living The Summer With You",
-        "Speak Englsih Like the Movies": "Speak Englsih Like the Movies",
-        "10 Years of Pizza": "10 Years of Pizza"
+        "Buhari": "Buhari",
+        "I'm Hungry": "I'm Hungry",
+        "Elshabrawi Abha": "Elshabrawi Abha",
+        "Assaf": "Assaf",
+        "Ninja": "Ninja",
+        "Almajd Real Estate": "Almajd Real Estate",
+        "Joaan Application": "Joaan Application",
+        "Mada Elebtsama": "Mada Elebtsama",
+        "Saudi Company For Coffee": "Saudi Company For Coffee",
+        "Zed Corner": "Zed Corner",
+        "Zen HR": "Zen HR",
+        "Salala": "Salala",
+        "Ministry of Housing": "Ministry of Housing"
       }
     },
+
     "inNumbers": {
       "title": "MASHAB In Numbers",
       "stats": {
@@ -53,6 +54,15 @@
       }
     }
   },
+
+  "reelDetail": {
+    "intro": "This project was worked on in partnership between Mashab Company and {{brand}}, and achieved great success thanks to God and the efforts of those working on this project."
+  },
+  "common": {
+    "notFound": "Sorry, that reel could not be found.",
+    "back": "Back"
+  },
+  
   "about": {
     "title": "Our Thinking",
     "FirstParallax": {
@@ -110,33 +120,11 @@
       "send": "SEND MESSAGE",
       "info": "Other Information"
     },
-    "vendors": {
-      "name": "Contact Name*",
-      "email": "Contact Email*",
-      "number": "Contact Number*",
-      "organization": "Organization Name*",
-      "possession": "Contact Possession*",
-      "profile": "Organization Profile*",
-      "partnership": "Partnership Opportunity*",
-      "send": "SEND MESSAGE"
-    },
-    "join": {
-      "name": "Name*",
-      "email": "Email*",
-      "number": "Contact Number*",
-      "message": "Other Information*",
-      "note": "Email us your CV at: info@mashab.sa",
-      "send": "SEND MESSAGE"
-    },
     "types": {
-      "clients": "Clients",
-      "vendors": "Vendors",
-      "join": "Join MASHAB"
+      "clients": "Clients"
     },
     "buttons": {
-      "clients": "Clients",
-      "vendors": "Vendors",
-      "join": "Join MASHAB"
+      "clients": "Clients"
     },
     "cvInfo": "Email us your CV at: info@mashab.sa",
     "select": {
@@ -147,8 +135,7 @@
     "options": {
       "sectors": ["Retail", "Healthcare", "Government"],
       "campaignTypes": ["360 Campaign", "Med Complexity", "Low Complexity"],
-      "scopes": ["Media Buying", "Video Production", "Campaign Concept"],
-      "budgets": ["400 – 600 k", "600 – 800 k", "800 – 1 300 k", "1 300 k+"]
+      "scopes": ["Media Buying", "Video Production", "Campaign Concept"]
     },
     "placeholders": {
       "name": "Full Name",
@@ -158,12 +145,57 @@
       "possession": "Contact Possession",
       "profile": "organization.com",
       "message": "Your message",
-      "partnership": "Partnership Opportunity"
+      "partnership": "Partnership Opportunity",
+      "budget": "Your Budget"
+    }
+  },
+  "order": {
+    "title": "Order Now",
+    "clients": {
+      "name": "Contact Name*",
+      "email": "Contact Email*",
+      "number": "Contact Number*",
+      "organization": "Organization*",
+      "sector": "Sector*",
+      "campaign": "Campaign Type*",
+      "scope": "Scope of work*",
+      "budget": "Budget*",
+      "message": "Work Details*",
+      "send": "SEND MESSAGE",
+      "info": "Other Information"
+    },
+    "types": {
+      "clients": "Clients"
+    },
+    "buttons": {
+      "clients": "Clients"
+    },
+    "cvInfo": "Email us your CV at: info@mashab.sa",
+    "select": {
+      "campaign": "Select Campaign Type",
+      "sector": "Select Sector",
+      "services": "Select Services"
+    },
+    "options": {
+      "sectors": ["Retail", "Healthcare", "Government"],
+      "campaignTypes": ["360 Campaign", "Med Complexity", "Low Complexity"],
+      "scopes": ["Media Buying", "Video Production", "Campaign Concept"]
+    },
+    "placeholders": {
+      "name": "Full Name",
+      "phone": "966 50 000 0000",
+      "email": "example@email.com",
+      "organization": "Organization Name",
+      "possession": "Contact Possession",
+      "profile": "organization.com",
+      "message": "Your message",
+      "partnership": "Partnership Opportunity",
+      "budget": "Your Budget"
     }
   },
   "footer": {
     "addressTitle": "Address",
-    "address": "Alnuzha - Riyadh",
+    "address": "Najran - Saudi Arabia",
     "socialTitle": "Social Accounts",
     "pagesTitle": "Pages",
     "pages": {
@@ -171,6 +203,6 @@
       "about": "About us",
       "contact": "Contact us"
     },
-    "country": "Saudi Arabia - Riyadh"
+    "country": "Saudi Arabia - Najran"
   }
 }

@@ -4,9 +4,9 @@ import { useRef, useState, useEffect, Fragment } from "react";
 import { useTranslation } from "react-i18next";
 
 const stats = [
-  { end: 10, suffix: "+", key: "years" },
-  { end: 2000, suffix: "+", key: "projects" },
-  { end: 22, suffix: "+", key: "awards" },
+  { end: 7, suffix: "+", key: "years" },
+  { end: 3000, suffix: "+", key: "projects" },
+  { end: 10, suffix: "+", key: "awards" },
 ];
 
 export default function InNumbersSection() {

@@ -6,96 +6,115 @@ import { useTranslation } from "react-i18next";
 const categories = [
   "ALL",
   "Long Term Partnership",
-  "360 Campaigns",
   "Strategy Work",
   "Video Based Campaigns",
-  "Key Visual Campaigns",
   "Brand Activation",
   "Seasonal Campaigns",
 ];
 
-const showReelItems = [
+interface ReelItem {
+  title: string;
+  image: string;
+  link: string;
+  category: string;
+  videoUrl: string;
+}
+
+export const showReelItems: ReelItem[] = [
   {
-    title: "He Walks The Talk",
-    image: "/showreel/reel1.jpg",
-    link: "/reel/he-walks-the-talk",
-    category: "360 Campaigns",
-  },
-  {
-    title: "You Find Saudi Made",
-    image: "/showreel/reel2.jpg",
-    link: "/reel/you-find-saudi-made",
-    category: "Strategy Work",
-  },
-  {
-    title: "With You Through Out The Journey",
-    image: "/showreel/reel3.jpg",
-    link: "/reel/with-you-through-out",
-    category: "Video Based Campaigns",
-  },
-  {
-    title: "Saudis Our True Wealth",
-    image: "/showreel/reel4.jpg",
-    link: "/reel/true-wealth",
-    category: "Long Term Partnership",
-  },
-  {
-    title: "Master The Language",
-    image: "/showreel/reel5.jpg",
-    link: "/reel/master-language",
-    category: "Key Visual Campaigns",
-  },
-  {
-    title: "Emkan From Everywhere",
-    image: "/showreel/reel6.jpg",
-    link: "/reel/emkan",
+    title: "I'm Hungry",
+    image: "/showreel/reel2.png",
+    link: "/reel/i'm-hungry",
     category: "Brand Activation",
+    videoUrl: "https://player.vimeo.com/video/1099040126?h=94ccb201aa",
   },
   {
-    title: "Follow the Insight",
-    image: "/showreel/reel7.jpg",
-    link: "/reel/follow-insight",
+    title: "Buhari",
+    image: "/showreel/reel1.png",
+    link: "/reel/buhari",
+    category: "Brand Activation",
+    videoUrl: "https://player.vimeo.com/video/1099040380?h=8f84abd150",
+  },
+  {
+    title: "Mada Elebtsama",
+    image: "/showreel/reel8.png",
+    link: "/reel/mada-elebtsama",
+    category: "Seasonal Campaigns",
+    videoUrl: "https://player.vimeo.com/video/1099041988?h=a642dfce45",
+  },
+  {
+    title: "Assaf",
+    image: "/showreel/reel4.png",
+    link: "/reel/assaf",
+    category: "Video Based Campaigns",
+    videoUrl: "https://player.vimeo.com/video/1099040916?h=f155b46c7d",
+  },
+  {
+    title: "Ninja",
+    image: "/showreel/reel5.png",
+    link: "/reel/ninja",
+    category: "Video Based Campaigns",
+    videoUrl: "https://player.vimeo.com/video/1099041247?h=0848c94732",
+  },
+  {
+    title: "Almajd Real Estate",
+    image: "/showreel/reel6.png",
+    link: "/reel/almajd-real-estate",
+    category: "Seasonal Campaigns",
+    videoUrl: "https://player.vimeo.com/video/1099041500?h=ae70184435",
+  },
+  {
+    title: "Joaan Application",
+    image: "/showreel/reel7.png",
+    link: "/reel/joaan-application",
+    category: "Seasonal Campaigns",
+    videoUrl: "https://player.vimeo.com/video/1099041669?h=58bfa0e92e",
+  },
+  {
+    title: "Elshabrawi Abha",
+    image: "/showreel/reel3.png",
+    link: "/reel/elshabrawi-abha",
+    category: "Video Based Campaigns",
+    videoUrl: "https://player.vimeo.com/video/1099040633?h=75faa261c8",
+  },
+  {
+    title: "Ministry of Housing",
+    image: "/showreel/reel13.png",
+    link: "/reel/ministry-of-housing",
     category: "Strategy Work",
+    videoUrl: "https://player.vimeo.com/video/1099043906?h=c399d3ddd1",
   },
   {
-    title: "Beyond the Vision",
-    image: "/showreel/reel8.jpg",
-    link: "/reel/beyond-vision",
-    category: "360 Campaigns",
+    title: "Zed Corner",
+    image: "/showreel/reel10.png",
+    link: "/reel/zed-corner",
+    category: "Long Term Partnership",
+    videoUrl: "https://player.vimeo.com/video/1099042588?h=26bdf730d0",
   },
   {
-    title: "From Riyadh to the World",
-    image: "/showreel/reel9.jpg",
-    link: "/reel/riyadh-to-world",
-    category: "Seasonal Campaigns",
+    title: "Zen HR",
+    image: "/showreel/reel11.png",
+    link: "/reel/zen-hr",
+    category: "Long Term Partnership",
+    videoUrl: "https://player.vimeo.com/video/1099042953?h=e1dc367fc5",
   },
   {
-    title: "To The World",
-    image: "/showreel/reel10.jpg",
-    link: "/reel/to-the-world",
-    category: "Seasonal Campaigns",
+    title: "Salala",
+    image: "/showreel/reel12.png",
+    link: "/reel/salala",
+    category: "Strategy Work",
+    videoUrl: "https://player.vimeo.com/video/1099043315?h=d2918c02e1",
   },
   {
-    title: "10 Years of Pizza",
-    image: "/showreel/reel1.jpg",
-    link: "/reel/beyond-pizza",
-    category: "360 Campaigns",
-  },
-  {
-    title: "Speak Englsih Like the Movies",
-    image: "/showreel/reel2.jpg",
-    link: "/reel/movies",
-    category: "Seasonal Campaigns",
-  },
-  {
-    title: "Living The Summer With You",
-    image: "/showreel/reel13.jpg",
-    link: "/reel/to-the-summer",
-    category: "Seasonal Campaigns",
+    title: "Saudi Company For Coffee",
+    image: "/showreel/reel9.png",
+    link: "/reel/saudi-company-for-coffee",
+    category: "Long Term Partnership",
+    videoUrl: "https://player.vimeo.com/video/1099042284?h=4dab9a8dab",
   },
 ];
 
-export default function ShowReelSection() {
+export default function ShowReel() {
   const { t, i18n } = useTranslation();
   const navigate = useNavigate();
   const [selectedCategory, setSelectedCategory] = useState("ALL");
@@ -125,18 +144,18 @@ export default function ShowReelSection() {
       12: "col-start-2 row-start-5", // div13
     };
 
-    return manualMap[i] || ""; // fallback to default layout if no match
+    return manualMap[i] || "";
   };
 
   return (
     <section
       className={`bg-[var(--primary-black)] text-theme px-4 md:px-8 pb-20 overflow-x-hidden ${fontClass}`}
     >
+      {/* --- Section Title Pop-In Animation --- */}
       <motion.h2
         className="text-center text-3xl md:text-6xl font-bold mb-10 mt-5"
         initial="rest"
         whileInView="enter"
-        animate="rest"
         variants={{
           rest: { opacity: 0, scale: 0.9 },
           enter: { opacity: 1, scale: 1 },
@@ -148,12 +167,12 @@ export default function ShowReelSection() {
       </motion.h2>
 
       <div className="flex flex-col gap-12 items-center">
+        {/* --- Category Buttons Pop-In Animation --- */}
         <motion.div
           className="flex flex-wrap justify-center gap-2"
           dir={isArabic ? "rtl" : "ltr"}
           initial="rest"
           whileInView="enter"
-          animate="rest"
           variants={{
             rest: { opacity: 0, scale: 0.9 },
             enter: { opacity: 1, scale: 1 },
@@ -177,29 +196,45 @@ export default function ShowReelSection() {
           ))}
         </motion.div>
 
+        {/* --- Grid of Cards (each card = a motion.div) --- */}
         <div
-          className="grid auto-rows-[170px] sm:auto-rows-[220px] lg:auto-rows-[260px] grid-cols-1 sm:grid-cols-2 lg:grid-cols-6 w-full gap-4 auto-flow-dense"
+          className="
+            grid 
+            auto-rows-auto 
+            grid-cols-1 sm:grid-cols-2 lg:grid-cols-6 
+            w-full gap-2 auto-flow-dense
+          "
           dir="ltr"
         >
           {filteredItems.map((item, i) => (
             <motion.div
               key={item.link}
               onClick={() => navigate(item.link)}
-              className={`relative cursor-pointer overflow-hidden rounded-xl ${spanClass(
+              className={`relative cursor-pointer overflow-hidden rounded-lg ${spanClass(
                 i
               )}`}
               initial="rest"
               whileInView="enter"
               whileHover="hover"
-              animate="rest"
               variants={{
+                // 1) "rest" = off-screen or before animation
                 rest: { opacity: 0, scale: 0.9 },
+
+                // 2) "enter" = when it scrolls into view
                 enter: { opacity: 1, scale: 1 },
+
+                // 3) "hover" = when user mouses over this container
+                //    We keep it at full opacity & normal scale (or a slight bump).
+                //    Children will react to "hover" as well, because they define their own hover variants.
+                hover: { opacity: 1, scale: 1.02 },
               }}
               transition={{ duration: 0.5, delay: i * 0.05 }}
               viewport={{ once: false }}
             >
-              {/* the image */}
+              {/* ----------------------
+                  1) Background Image scales up on hover
+                     (child <motion.img> sees "hover" from parent and uses its own variants)
+                  ---------------------- */}
               <motion.img
                 src={item.image}
                 alt={t(`home.showreel.items.${item.title}`)}
@@ -211,7 +246,10 @@ export default function ShowReelSection() {
                 transition={{ duration: 0.3 }}
               />
 
-              {/* the black dimming overlay */}
+              {/* ----------------------
+                  2) Black dimming overlay on hover
+                     (child <motion.div> sees "hover" from parent and uses its own variants)
+                  ---------------------- */}
               <motion.div
                 className="absolute inset-0 bg-black"
                 variants={{
@@ -221,11 +259,19 @@ export default function ShowReelSection() {
                 transition={{ duration: 0.3 }}
               />
 
-              {/* title on top */}
+              {/* ----------------------
+                  3) Title text (always visible on top)
+                  ---------------------- */}
               <span
-                className={`absolute bottom-4 ${
-                  isArabic ? "right-1 md:right-3 text-right" : "left-1 md:left-3 text-left"
-                } z-10 font-bold text-sm md:text-xl drop-shadow`}
+                className={`
+                  absolute bottom-2
+                  ${isArabic ? "right-2 text-right" : "left-2 text-left"}
+                  z-10
+                  font-semibold text-[clamp(0.75rem,2vw,1rem)] md:text-[clamp(1rem,2.5vw,1.25rem)]
+                  bg-black/20
+                  px-1 rounded
+                  drop-shadow-lg
+                `}
               >
                 {t(`home.showreel.items.${item.title}`)}
               </span>

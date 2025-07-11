@@ -4,10 +4,17 @@ import { useNavigate } from "react-router-dom";
 export default function HeroSection() {
   const { i18n, t } = useTranslation();
   const navigate = useNavigate();
+  const isArabic = i18n.language === "ar";
+  const fontClass = isArabic ? "font-theme-ar" : "font-theme";
 
   return (
-    <section className="relative md:mt-[-50px] md:h-[110vh] w-full overflow-hidden flex items-center justify-center">
-      {/* Video with side padding */}
+    <section
+      className={`
+        relative md:mt-[-50px] md:h-[110vh] w-full overflow-hidden
+        flex items-center justify-center ${fontClass}
+      `}
+    >
+      {/* Video background */}
       <div className="w-full h-[400px] mt-[100px] md:h-full relative z-0">
         <video
           className="w-full h-full object-cover"
@@ -20,33 +27,39 @@ export default function HeroSection() {
         </video>
       </div>
 
-      {/* Overlay content */}
-      <div className="absolute inset-0 z-10 flex items-end justify-center pb-[12%]">
+      {/* Overlay CTA */}
+      <div className="absolute inset-0 z-10 flex items-end justify-center pb-[6%]">
         <button
-          onClick={() => navigate("/contact")}
-          className="group flex items-center gap-2 bg-[var(--secondary-orange)] text-white font-semibold text-lg md:text-xl px-6 py-2 rounded-full shadow-md transition-colors duration-300 hover:bg-[var(--primary-light)] hover:text-[var(--secondary-orange)] cursor-pointer"
+          onClick={() => navigate("/order")}
+          className={`
+            /* fluid font-size: from .875rem up to 1.25rem as viewport goes from 0→100vw */
+            text-[clamp(0.875rem,2vw,1.25rem)]
+            /* fluid horizontal padding: 0.75rem→1.5rem */
+            px-[clamp(0.75rem,4vw,1.5rem)]
+            /* fluid vertical padding: 0.5rem→1rem */
+            py-[clamp(0.5rem,2vw,1rem)]
+
+            flex items-center gap-2
+            border border-theme
+            rounded-lg
+            bg-transparent text-theme
+            font-medium
+            transition-all duration-300 cursor-pointer
+            hover:shadow-[inset_0_0_20px_rgba(255,238,212,0.6)]
+          `}
         >
-          <span className="transition-colors duration-300 group-hover:text-[var(--secondary-orange)]">
-            {t("home.order")}
-          </span>
+          <span>{t("home.order")}</span>
 
-          {/* Default white arrow */}
-          <img
-            src="/arrow-right.png"
-            alt="arrow"
-            className={`w-4 h-4 ${
-              i18n.language === "ar" ? "rotate-180" : ""
-            } group-hover:hidden`}
-          />
-
-          {/* Hover orange arrow */}
-          <img
-            src="/arrow-right-orange.png"
-            alt="arrow"
-            className={`w-4 h-4 hidden group-hover:block ${
-              i18n.language === "ar" ? "rotate-180" : ""
-            }`}
-          />
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+            fill="currentColor"
+            stroke="currentColor"
+            strokeWidth={2}
+            className={`w-6 h-6 transform ${isArabic ? "scale-x-[-1]" : ""}`}
+          >
+            <path d="M9 5l7 7-7 7" />
+          </svg>
         </button>
       </div>
     </section>

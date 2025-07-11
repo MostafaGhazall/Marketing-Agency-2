@@ -56,7 +56,7 @@ export default function SecondParallax() {
   const bubbleLabels = labels.map((label) => ({
     label: t(`about.SecondParallax.labels.${label}`),
     text: t(`about.SecondParallax.text.${label}`),
-    image: "/about/bubble-yellow.svg",
+    image: "/about/bubble-yellow.png",
   }));
 
   const ref = useRef<HTMLDivElement>(null);
@@ -82,7 +82,7 @@ export default function SecondParallax() {
 
         <div className="relative w-full h-[65vh] sm:h-[72vh] md:h-[100vh] flex items-end justify-center">
           <img
-            src="/about/golden-dome.png"
+            src="/about/light-dome.png"
             alt="Golden dome"
             className="absolute bottom-0 w-[335vw] sm:w-[160vw] md:w-[100vw] h-auto max-w-none object-cover z-0"
           />

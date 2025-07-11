@@ -5,15 +5,15 @@ import { useTranslation } from "react-i18next";
 
 const clientLogos = [
   { id: 1, type: "private" },
-  { id: 2, type: "government" },
-  { id: 3, type: "private" },
+  { id: 2, type: "private" },
+  { id: 3, type: "government" },
   { id: 4, type: "government" },
   { id: 5, type: "private" },
-  { id: 6, type: "government" },
-  { id: 7, type: "private" },
+  { id: 6, type: "private" },
+  { id: 7, type: "government" },
   { id: 8, type: "government" },
-  { id: 9, type: "private" },
-  { id: 10, type: "government" },
+  { id: 9, type: "government" },
+  { id: 10, type: "private" },
 ];
 
 export default function Clients() {

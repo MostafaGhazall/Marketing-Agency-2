@@ -21,7 +21,7 @@ export default function FirstParallax() {
     id: `section-${i + 1}`,
     title: t(`about.FirstParallax.title.${title}`),
     description: t(`about.FirstParallax.description.${title}`),
-    image: `/about/${["one", "two", "three", "four", "five"][i]}.jpg`,
+    image: `/about/${["one", "two", "three", "four", "five"][i]}.png`,
   }));
 
   const [activeId, setActiveId] = useState<string | null>(null);

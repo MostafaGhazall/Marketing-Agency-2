@@ -33,8 +33,8 @@ export default function Globe() {
         markerColor: [1, 0.6, 0],
         glowColor: [0.5, 0.5, 0.5],
         markers: [
-          { location: [30.033, 31.233], size: 0.08 },
-          { location: [24.7136, 46.6753], size: 0.08 },
+          { location: [28.0444, 31.2357], size: 0.08 }, // Cairo, Egypt
+          { location: [17.492, 44.1275], size: 0.08 }, // Najran, KSA
         ],
         onRender: (state) => {
           state.phi = phi.current;

@@ -1,112 +1,129 @@
-import { useNavigate } from "react-router-dom";
-import { useEffect, useRef, useMemo, useCallback } from "react";
+import { useRef } from "react";
+import { motion, useScroll, useTransform } from "framer-motion";
 import { useTranslation } from "react-i18next";
 
-/** ─────────────────────────────
- *  Static carousel data
- *  ────────────────────────── */
-const featuredItems = [
-  { title: "Your Other Half",        image: "/works/work1.jpg", link: "/works/your-other-half" },
-  { title: "The oldest and newest bank", image: "/works/work2.jpg", link: "/works/alrajhi-bank" },
-  { title: "National Day Project",   image: "/works/work3.jpg", link: "/works/national-day" },
-  { title: "National Project",       image: "/works/work4.jpg", link: "/works/national" },
+interface Work {
+  id: number;
+  title: string;
+  video: string;
+  logo: string;
+  labelKey: string;
+}
+
+const works: Work[] = [
+  {
+    id: 1,
+    title: "saldwish | MBC GROUP",
+    logo: "/works/logo1.png",
+    labelKey: "With MASHAB",
+    video: "/works/work1.mp4",
+  },
+  {
+    id: 2,
+    title: "Akhdod Club",
+    logo: "/works/logo2.png",
+    labelKey: "With MASHAB",
+    video: "/works/work2.mp4",
+  },
+  {
+    id: 3,
+    title: "Jeddah History",
+    logo: "/works/logo3.png",
+    labelKey: "With MASHAB",
+    video: "/works/work3.mp4",
+  },
+  {
+    id: 4,
+    title: "Saudi Founding Day",
+    logo: "/works/logo4.png",
+    labelKey: "With MASHAB",
+    video: "/works/work4.mp4",
+  },
 ];
 
 export default function FeaturedWorks() {
+  const ref = useRef<HTMLDivElement>(null);
   const { t, i18n } = useTranslation();
-  const navigate            = useNavigate();
-  const trackRef            = useRef<HTMLDivElement>(null);
-
-  /** Persistent, mutable speed value (0.5 px/frame on hover, 1.5 px otherwise) */
-  const speedRef = useRef<number>(1.5);
-
-  /** Helper flags */
-  const isArabic  = i18n.language === "ar";
+  const isArabic = i18n.language === "ar";
   const fontClass = isArabic ? "font-theme-ar" : "font-theme";
 
-  /** Duplicate the items four times so the loop feels endless */
-  const extendedItems = useMemo(() => Array(4).fill(featuredItems).flat(), []);
+  /* ---------------- scroll → translateX ---------------- */
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ["start start", "end end"],
+  });
 
-  /** Hover handlers (no re-render) */
-  const handleMouseEnter = () => { speedRef.current = 0.5; };
-  const handleMouseLeave = () => { speedRef.current = 1.5; };
+  // Rail width = works.length × 100vw. Translate from 0 → -((n-1)×100vw).
+  const trackX = useTransform(scrollYProgress, (v) => {
+    const totalSlides = works.length;
+    const shiftPerSlide = 100; // vw
+    const totalShift = (totalSlides - 1) * shiftPerSlide;
 
-  /** Click-through navigation */
-  const handleNavigate   = useCallback((link: string) => navigate(link), [navigate]);
+    // On medium and larger screens: shift to center first and last
+    const centerOffset =
+      typeof window !== "undefined" && window.innerWidth >= 768 ? 0 : 0;
 
-  /*────────────────────────────────────────────────────────
-   * 1. Re-position the scroll start whenever language flips
-   *────────────────────────────────────────────────────────*/
-  useEffect(() => {
-    const track = trackRef.current;
-    if (!track) return;
+    return `-${v * totalShift * 1 + centerOffset - v * centerOffset * 2}vw`;
+  });
+  const trackWidth = `${works.length * 100}vw`;
 
-    track.scrollLeft = isArabic
-      ? track.scrollWidth - track.clientWidth   // right edge for RTL
-      : 0;                                      // left edge for LTR
-  }, [isArabic]);
-
-  /*────────────────────────────────────────────────────────
-   * 2. Single animation loop — respects RTL and live speed
-   *────────────────────────────────────────────────────────*/
-  useEffect(() => {
-    const track = trackRef.current;
-    if (!track) return;
-
-    const dir        = isArabic ? -1 : 1;                      // pixel delta sign
-    const maxScroll  = () => track.scrollWidth - track.clientWidth;
-
-    let frameId: number;
-    const step = () => {
-      track.scrollLeft += dir * speedRef.current;
-
-      /** seamless wrap-around */
-      if (!isArabic && track.scrollLeft >= maxScroll()) {
-        track.scrollLeft = 0;
-      } else if (isArabic && track.scrollLeft <= 0) {
-        track.scrollLeft = maxScroll();
-      }
-
-      frameId = requestAnimationFrame(step);
-    };
-
-    frameId = requestAnimationFrame(step);
-    return () => cancelAnimationFrame(frameId);
-  }, [isArabic]);      // only restarts if direction changes
-
-  /*────────────────────────────────────────────────────────
-   *  Render
-   *────────────────────────────────────────────────────────*/
   return (
-    <section className={`w-full overflow-hidden bg-[var(--primary-black)] text-theme ${fontClass} px-0 pt-20 pb-20 md:py-20`}>
-      <h2 className="text-3xl md:text-5xl font-bold mb-20 text-center">
-        {t("home.featured.title")}
-      </h2>
-
+    <section
+      ref={ref}
+      className={`relative h-[400vh] bg-[var(--primary-black)] text-[var(--secondary-white)] ${fontClass} pb-10`}
+    >
+      {/* Sticky viewport frame */}
       <div
-        ref={trackRef}
-        onMouseEnter={handleMouseEnter}
-        onMouseLeave={handleMouseLeave}
-        className={`w-full flex gap-2 overflow-hidden ${isArabic ? "flex-row-reverse" : ""}`}
+        dir="ltr"
+        className="sticky inset-x-0 top-1/4 md:top-0 md:h-screen overflow-hidden"
       >
-        {extendedItems.map((item, index) => (
-          <div
-            key={index}
-            onClick={() => handleNavigate(item.link)}
-            className="w-[90vw] sm:w-[500px] md:w-[600px] lg:w-[650px] h-[64vw] sm:h-[400px] md:h-[450px] lg:h-[550px] rounded-2xl overflow-hidden relative cursor-pointer flex-shrink-0"
-          >
-            <img
-              src={item.image}
-              alt={t(`home.featured.items.${item.title}`)}
-              className="w-full h-full object-cover"
-            />
-            <div className={`absolute bottom-4 text-theme font-bold text-lg md:text-2xl ${fontClass} ${
-                  isArabic ? "right-6 text-right" : "left-6 text-left"
-                } drop-shadow-sm`}>
-              {t(`home.featured.items.${item.title}`)}
+        <h2 className="text-3xl md:text-5xl font-bold text-theme my-10 md:pb-25 lg:my-10 text-center">
+          {t("home.featured.title")}
+        </h2>
+        {/* Horizontal rail */}
+        <motion.div style={{ x: trackX, width: trackWidth }} className="flex">
+          {works.map((work) => (
+            <div
+              key={work.id}
+              className="relative flex h-full md:h-[50vh] w-screen md:min-w-[100vw] lg:min-w-[100vw] flex-shrink-0 items-center justify-center px-4 sm:px-10 md:pl-[50px]"
+            >
+              <div className="relative w-full max-w-[90vw] md:max-w-[700px]">
+                {/* Logo and Label */}
+                <div className={`mb-3 flex flex-col items-center ${fontClass}`}>
+                  <img
+                    src={work.logo}
+                    alt={`${work.labelKey} logo`}
+                    className="w-30 h-30 md:w-40 md:h-40 object-contain"
+                  />
+                  <p className="text-lg md:text-xl font-semibold text-theme text-center">
+                    {t(`home.featured.label.${work.labelKey}`)}
+                  </p>
+                </div>
+
+                {/* Video */}
+                <video
+                  src={work.video}
+                  autoPlay
+                  muted
+                  loop
+                  playsInline
+                  className="aspect-video w-full rounded-2xl md:rounded-3xl object-cover shadow-2xl"
+                />
+
+                {/* Title overlay */}
+                <div
+                  className={`absolute bottom-2 md:bottom-4 ${
+                    isArabic
+                      ? "right-4 md:right-6 text-right"
+                      : "left-4 md:left-6 text-left"
+                  } text-base sm:text-lg md:text-2xl font-bold drop-shadow-sm ${fontClass}`}
+                >
+                  {t(`home.featured.items.${work.title}`)}
+                </div>
+              </div>
             </div>
-          </div>
-        ))}
+          ))}
+        </motion.div>
       </div>
     </section>
   );

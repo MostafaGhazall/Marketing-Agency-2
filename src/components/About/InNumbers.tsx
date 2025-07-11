@@ -4,9 +4,9 @@ import { useRef, useState, useEffect, Fragment } from "react";
 import { useTranslation } from "react-i18next";
 
 const stats = [
-  { end: 10, suffix: "+", key: "years" },
-  { end: 2000, suffix: "+", key: "projects" },
-  { end: 22, suffix: "+", key: "awards" },
+  { end: 7, suffix: "+", key: "years" },
+  { end: 3000, suffix: "+", key: "projects" },
+  { end: 10, suffix: "+", key: "awards" },
 ];
 
 export default function InNumbersSection() {
@@ -25,7 +25,7 @@ export default function InNumbersSection() {
   return (
     <section
       ref={sectionRef}
-      className={`bg-[var(--primary-black)] text-theme px-4 md:px-8 pb-20 text-center ${fontClass}`}
+      className={`bg-[var(--primary-black)] text-theme px-4 md:px-8 py-20 text-center ${fontClass}`}
     >
       <h2 className="text-3xl md:text-5xl font-bold mb-12 text-theme">
         {t("home.inNumbers.title")}
