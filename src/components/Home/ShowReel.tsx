@@ -12,12 +12,15 @@ const categories = [
   "Seasonal Campaigns",
 ];
 
+type Orientation = "portrait" | "landscape";
+
 interface ReelItem {
   title: string;
   image: string;
   link: string;
   category: string;
   videoUrl: string;
+  orientation: Orientation;
 }
 
 export const showReelItems: ReelItem[] = [
@@ -27,6 +30,7 @@ export const showReelItems: ReelItem[] = [
     link: "/reel/i'm-hungry",
     category: "Brand Activation",
     videoUrl: "https://player.vimeo.com/video/1099040126?h=94ccb201aa",
+    orientation: "portrait",
   },
   {
     title: "Buhari",
@@ -34,6 +38,7 @@ export const showReelItems: ReelItem[] = [
     link: "/reel/buhari",
     category: "Brand Activation",
     videoUrl: "https://player.vimeo.com/video/1099040380?h=8f84abd150",
+    orientation: "portrait",
   },
   {
     title: "Mada Elebtsama",
@@ -41,6 +46,7 @@ export const showReelItems: ReelItem[] = [
     link: "/reel/mada-elebtsama",
     category: "Seasonal Campaigns",
     videoUrl: "https://player.vimeo.com/video/1099041988?h=a642dfce45",
+    orientation: "landscape",
   },
   {
     title: "Assaf",
@@ -48,6 +54,7 @@ export const showReelItems: ReelItem[] = [
     link: "/reel/assaf",
     category: "Video Based Campaigns",
     videoUrl: "https://player.vimeo.com/video/1099040916?h=f155b46c7d",
+    orientation: "portrait",
   },
   {
     title: "Ninja",
@@ -55,6 +62,7 @@ export const showReelItems: ReelItem[] = [
     link: "/reel/ninja",
     category: "Video Based Campaigns",
     videoUrl: "https://player.vimeo.com/video/1099041247?h=0848c94732",
+    orientation: "portrait",
   },
   {
     title: "Almajd Real Estate",
@@ -62,6 +70,7 @@ export const showReelItems: ReelItem[] = [
     link: "/reel/almajd-real-estate",
     category: "Seasonal Campaigns",
     videoUrl: "https://player.vimeo.com/video/1099041500?h=ae70184435",
+    orientation: "landscape",
   },
   {
     title: "Joaan Application",
@@ -69,6 +78,7 @@ export const showReelItems: ReelItem[] = [
     link: "/reel/joaan-application",
     category: "Seasonal Campaigns",
     videoUrl: "https://player.vimeo.com/video/1099041669?h=58bfa0e92e",
+    orientation: "portrait",
   },
   {
     title: "Elshabrawi Abha",
@@ -76,6 +86,7 @@ export const showReelItems: ReelItem[] = [
     link: "/reel/elshabrawi-abha",
     category: "Video Based Campaigns",
     videoUrl: "https://player.vimeo.com/video/1099040633?h=75faa261c8",
+    orientation: "landscape",
   },
   {
     title: "Ministry of Housing",
@@ -83,6 +94,7 @@ export const showReelItems: ReelItem[] = [
     link: "/reel/ministry-of-housing",
     category: "Strategy Work",
     videoUrl: "https://player.vimeo.com/video/1099043906?h=c399d3ddd1",
+    orientation: "landscape",
   },
   {
     title: "Zed Corner",
@@ -90,6 +102,7 @@ export const showReelItems: ReelItem[] = [
     link: "/reel/zed-corner",
     category: "Long Term Partnership",
     videoUrl: "https://player.vimeo.com/video/1099042588?h=26bdf730d0",
+    orientation: "landscape",
   },
   {
     title: "Zen HR",
@@ -97,6 +110,7 @@ export const showReelItems: ReelItem[] = [
     link: "/reel/zen-hr",
     category: "Long Term Partnership",
     videoUrl: "https://player.vimeo.com/video/1099042953?h=e1dc367fc5",
+    orientation: "landscape",
   },
   {
     title: "Salala",
@@ -104,6 +118,7 @@ export const showReelItems: ReelItem[] = [
     link: "/reel/salala",
     category: "Strategy Work",
     videoUrl: "https://player.vimeo.com/video/1099043315?h=d2918c02e1",
+    orientation: "landscape",
   },
   {
     title: "Saudi Company For Coffee",
@@ -111,6 +126,7 @@ export const showReelItems: ReelItem[] = [
     link: "/reel/saudi-company-for-coffee",
     category: "Long Term Partnership",
     videoUrl: "https://player.vimeo.com/video/1099042284?h=4dab9a8dab",
+    orientation: "landscape",
   },
 ];
 

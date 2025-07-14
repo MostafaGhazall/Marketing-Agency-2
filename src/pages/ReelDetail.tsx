@@ -15,6 +15,8 @@ export default function ReelDetail() {
     return <p>{t("common.notFound")}</p>;
   }
 
+  const isPortrait = item.orientation === "portrait";
+  
   return (
     <section className={`px-6 py-12 ${fontClass}`}>
       <h1 className="text-3xl font-bold mb-6 text-theme text-center">
@@ -27,12 +29,17 @@ export default function ReelDetail() {
         })}
       </p>
 
-      <div className="w-full max-w-3xl mx-auto aspect-video">
+      <div
+        className={`w-full mx-auto px-4 ${
+          isPortrait
+            ? "aspect-[9/16] max-w-sm md:max-w-md"
+            : "aspect-video max-w-4xl"
+        }`}
+      >
         <iframe
           title={t(`home.showreel.items.${item.title}`)}
           src={item.videoUrl}
-          width="100%"
-          height="100%"
+          className="w-full h-full rounded-md shadow-lg"
           frameBorder="0"
           allow="autoplay; fullscreen; picture-in-picture"
           allowFullScreen
