@@ -80,7 +80,7 @@ export default memo(function HeroSection() {
             disablePictureInPicture
             controls={false}
           >
-            <source src="/hero.mp4" type="video/mp4" />
+            <source src="/hero.webm" type="video/webm" />
           </video>
         )}
       </div>
