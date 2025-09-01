@@ -120,11 +120,33 @@
       "send": "SEND MESSAGE",
       "info": "Other Information"
     },
+    "vendors": {
+      "name": "Contact Name*",
+      "email": "Contact Email*",
+      "number": "Contact Number*",
+      "organization": "Organization Name*",
+      "possession": "Contact Possession*",
+      "profile": "Organization Profile*",
+      "partnership": "Partnership Opportunity*",
+      "send": "SEND MESSAGE"
+    },
+    "join": {
+      "name": "Name*",
+      "email": "Email*",
+      "number": "Contact Number*",
+      "message": "Other Information*",
+      "note": "Email us your CV at: info@mashab.sa",
+      "send": "SEND MESSAGE"
+    },
     "types": {
-      "clients": "Clients"
+      "clients": "Clients",
+      "vendors": "Vendors",
+      "join": "Join MASHAB"
     },
     "buttons": {
-      "clients": "Clients"
+      "clients": "Clients",
+      "vendors": "Vendors",
+      "join": "Join MASHAB"
     },
     "cvInfo": "Email us your CV at: info@mashab.sa",
     "select": {
@@ -135,7 +157,8 @@
     "options": {
       "sectors": ["Retail", "Healthcare", "Government"],
       "campaignTypes": ["360 Campaign", "Med Complexity", "Low Complexity"],
-      "scopes": ["Media Buying", "Video Production", "Campaign Concept"]
+      "scopes": ["Media Buying", "Video Production", "Campaign Concept"],
+      "budgets": ["400 – 600 k", "600 – 800 k", "800 – 1 300 k", "1 300 k+"]
     },
     "placeholders": {
       "name": "Full Name",
@@ -144,9 +167,9 @@
       "organization": "Organization Name",
       "possession": "Contact Possession",
       "profile": "organization.com",
+      "budget": "Your Budget",
       "message": "Your message",
-      "partnership": "Partnership Opportunity",
-      "budget": "Your Budget"
+      "partnership": "Partnership Opportunity"
     }
   },
   "order": {

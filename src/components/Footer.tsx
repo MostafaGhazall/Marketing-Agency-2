@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
-import { FaInstagram, FaTiktok, FaEnvelope } from "react-icons/fa6";
+import { FaInstagram, FaTiktok, FaEnvelope, FaWhatsapp } from "react-icons/fa6";
 
 export default function Footer() {
   const { t, i18n } = useTranslation();
@@ -63,6 +63,15 @@ export default function Footer() {
               className="hover:text-white transition"
             >
               <FaEnvelope />
+            </a>
+            <a
+              href="https://wa.me/966541398949"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="WhatsApp"
+              className="hover:text-white transition"
+            >
+              <FaWhatsapp />
             </a>
           </div>
         </div>

@@ -52,7 +52,7 @@ export default function Clients() {
   return (
     <section className={`w-full px-4 sm:px-6 md:px-10 py-16 bg-[var(--primary-black)] ${fontClass}`}>
       <div className="max-w-7xl mx-auto text-center mb-10">
-        <h2 className="text-[var(--primary-light)] text-3xl sm:text-4xl md:text-5xl font-bold mb-6 animate-slide-down">
+        <h2 className="text-theme text-3xl sm:text-4xl md:text-5xl font-bold mb-6 animate-slide-down">
           {t("about.clients.title")}
         </h2>
         <div className="flex flex-wrap justify-center gap-4">
@@ -62,8 +62,8 @@ export default function Clients() {
               onClick={() => setFilter(key)}
               className={`px-5 py-2 border border-theme rounded-lg font-medium transition-all cursor-pointer ${
                 filter === key
-                  ? "bg-[var(--primary-light)] text-[var(--primary-black)]"
-                  : "text-theme bg-transparent hover:shadow-[inset_0_0_20px_rgba(255,238,212,0.6)]"
+                  ? "bg-theme text-[var(--primary-black)]"
+                  : "text-theme bg-transparent hover:shadow-[inset_0_0_20px_rgba(234,100,46,0.6)]"
               }`}
             >
               {t(`about.clients.filters.${key}`)}

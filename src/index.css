@@ -4,7 +4,7 @@
 :root {
   --primary-light: #ffeed4;
   --primary-neutral: #ebebeb;
-  --primary-dark: #ed642d;
+  --primary-dark: #ea642e;
   --primary-black: #000000;
 
   --secondary-orange: #f37f00;
@@ -26,12 +26,16 @@
 
 /* Text */
 .text-theme {
-  color: var(--primary-light);
+  color: var(--primary-dark);
+}
+
+.text-lang-active {
+  color: var(--secondary-orange);
 }
 
 /* Border */
 .border-theme {
-  border-color: var(--secondary-light);
+  border-color: var(--secondary-orange);
 }
 
 /* Hover Background */
@@ -60,7 +64,7 @@
 html,
 body {
   background-color: var(--primary-black);
-  color: var(--secondary-white); /* optional fallback text color */
+  color: var(--primary-dark); /* optional fallback text color */
   margin: 0;
   padding: 0;
 }

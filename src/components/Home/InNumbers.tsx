@@ -44,7 +44,7 @@ export default function InNumbersSection() {
                   />
                 )}
               </div>
-              <div className="text-[var(--primary-light)] text-3xl md:text-3xl mt-2">
+              <div className="text-theme text-3xl md:text-3xl mt-2">
                 {t(`home.inNumbers.stats.${stat.key}`)}
               </div>
             </div>

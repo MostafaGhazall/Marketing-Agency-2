@@ -80,8 +80,8 @@ export default function FirstParallax() {
             className={`whitespace-nowrap transition-colors duration-300 text-2xl font-semibold cursor-pointer
               ${
                 activeId === sec.id
-                  ? "text-[var(--secondary-orange)] font-extrabold"
-                  : "text-[var(--secondary-light)] hover:text-[var(--secondary-orange)]"
+                  ? "text-[var(--secondary-white)] font-extrabold"
+                  : "text-[var(--secondary-light)] hover:text-[var(--secondary-white)]"
               }`}
           >
             {sec.title}

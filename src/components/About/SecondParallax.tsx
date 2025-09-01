@@ -82,7 +82,7 @@ export default function SecondParallax() {
 
         <div className="relative w-full h-[65vh] sm:h-[72vh] md:h-[100vh] flex items-end justify-center">
           <img
-            src="/about/light-dome.png"
+            src="/about/golden-dome.png"
             alt="Golden dome"
             className="absolute bottom-0 w-[335vw] sm:w-[160vw] md:w-[100vw] h-auto max-w-none object-cover z-0"
           />
@@ -125,7 +125,7 @@ export default function SecondParallax() {
                   />
                   <div
                     className={`absolute inset-0 flex items-center justify-center
-                                text-theme font-semibold
+                                text-[var(--secondary-white)] font-semibold
                                 text-2xl sm:text-lg md:text-2xl lg:text-3xl
                                 tracking-tight text-center px-2 ${fontClass}`}
                   >

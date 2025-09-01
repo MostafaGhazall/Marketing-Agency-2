@@ -120,9 +120,9 @@
       "organization": "اسم الجهة",
       "possession": "صفة المتواصل",
       "profile": "organization.com",
+      "budget": "ميزانيتك",
       "message": "رسالتك",
-      "partnership": "فرصة شراكة",
-      "budget": "ميزانيتك"
+      "partnership": "فرصة شراكة"
     },
     "successMessage": "شكرًا – سنتواصل معك قريبًا!",
     "clients": {
@@ -137,11 +137,33 @@
       "message": "معلومات إضافية",
       "send": "إرسال الرسالة"
     },
+    "vendors": {
+      "name": "الاسم الكامل*",
+      "email": "البريد الإلكتروني*",
+      "number": "رقم التواصل*",
+      "organization": "اسم جهة العمل*",
+      "possession": "المنصب*",
+      "profile": "ملف جهة العمل*",
+      "partnership": "فرصة شراكة*",
+      "send": "إرسال الرسالة"
+    },
+    "join": {
+      "name": "الاسم*",
+      "email": "البريد الإلكتروني*",
+      "number": "رقم التواصل*",
+      "message": "معلومات إضافية*",
+      "note": "أرسل سيرتك الذاتية إلى: info@mashab.sa",
+      "send": "إرسال الرسالة"
+    },
     "types": {
-      "clients": "العملاء"
+      "clients": "العملاء",
+      "vendors": "الموزعين",
+      "join": "انضم إلى مشب"
     },
     "buttons": {
-      "clients": "العملاء"
+      "clients": "العملاء",
+      "vendors": "الموزعين",
+      "join": "انضم إلى مشب"
     },
     "cvInfo": "أرسل سيرتك الذاتية إلى: info@mashab.sa",
     "select": {

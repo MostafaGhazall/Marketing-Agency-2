@@ -203,8 +203,8 @@ export default function ShowReel() {
               className={`border border-theme px-4 py-2 rounded-lg text-sm md:text-base transition cursor-pointer
                 ${
                   selectedCategory === cat
-                    ? "bg-[var(--primary-light)] text-black"
-                    : "text-theme bg-transparent hover:shadow-[inset_0_0_20px_rgba(255,238,212,0.6)]"
+                    ? "bg-theme text-black"
+                    : "text-theme bg-transparent hover:shadow-[inset_0_0_20px_rgba(234,100,46,0.6)]"
                 }`}
             >
               {t(`home.showreel.categories.${cat}`)}

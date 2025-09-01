@@ -1,129 +1,165 @@
-import { useRef } from "react";
-import { motion, useScroll, useTransform } from "framer-motion";
+import { useEffect, useRef, useMemo, useCallback } from "react";
 import { useTranslation } from "react-i18next";
 
+/** ─────────────────────────────
+ *  Data (videos + text)
+ *  ────────────────────────── */
 interface Work {
   id: number;
-  title: string;
-  video: string;
-  logo: string;
-  labelKey: string;
+  title: string; // overlay text (i18n fallback)
+  video: string; // card media
+  logo: string; // bottom-left logo
 }
 
 const works: Work[] = [
   {
     id: 1,
     title: "saldwish | MBC GROUP",
-    logo: "/works/logo1.png",
-    labelKey: "With MASHAB",
     video: "/works/work1.mp4",
+    logo: "/works/logo1.png",
   },
   {
     id: 2,
     title: "Akhdod Club",
-    logo: "/works/logo2.png",
-    labelKey: "With MASHAB",
     video: "/works/work2.mp4",
+    logo: "/works/logo2.png",
   },
   {
     id: 3,
     title: "Jeddah History",
-    logo: "/works/logo3.png",
-    labelKey: "With MASHAB",
     video: "/works/work3.mp4",
+    logo: "/works/logo3.png",
   },
   {
     id: 4,
     title: "Saudi Founding Day",
-    logo: "/works/logo4.png",
-    labelKey: "With MASHAB",
     video: "/works/work4.mp4",
+    logo: "/works/logo4.png",
   },
 ];
 
 export default function FeaturedWorks() {
-  const ref = useRef<HTMLDivElement>(null);
   const { t, i18n } = useTranslation();
+  const trackRef = useRef<HTMLDivElement>(null);
+
+  // speed control
+  const speedRef = useRef<number>(1.5);
+
+  // RTL / font
   const isArabic = i18n.language === "ar";
   const fontClass = isArabic ? "font-theme-ar" : "font-theme";
 
-  /* ---------------- scroll → translateX ---------------- */
-  const { scrollYProgress } = useScroll({
-    target: ref,
-    offset: ["start start", "end end"],
-  });
+  // duplicate for seamless loop
+  const extendedItems = useMemo(() => Array(4).fill(works).flat(), []);
 
-  // Rail width = works.length × 100vw. Translate from 0 → -((n-1)×100vw).
-  const trackX = useTransform(scrollYProgress, (v) => {
-    const totalSlides = works.length;
-    const shiftPerSlide = 100; // vw
-    const totalShift = (totalSlides - 1) * shiftPerSlide;
+  // hover speed change
+  const handleMouseEnter = () => {
+    speedRef.current = 0.5;
+  };
+  const handleMouseLeave = () => {
+    speedRef.current = 1.5;
+  };
 
-    // On medium and larger screens: shift to center first and last
-    const centerOffset =
-      typeof window !== "undefined" && window.innerWidth >= 768 ? 0 : 0;
+  // optional click behavior
+  const handleCardClick = useCallback((_work: Work) => {
+    // navigate(_work.link)
+  }, []);
 
-    return `-${v * totalShift * 1 + centerOffset - v * centerOffset * 2}vw`;
-  });
-  const trackWidth = `${works.length * 100}vw`;
+  // start position based on direction
+  useEffect(() => {
+    const track = trackRef.current;
+    if (!track) return;
+    track.scrollLeft = isArabic ? track.scrollWidth - track.clientWidth : 0;
+  }, [isArabic]);
+
+  // single RAF loop for endless scroll
+  useEffect(() => {
+    const track = trackRef.current;
+    if (!track) return;
+
+    const dir = isArabic ? -1 : 1;
+    const maxScroll = () => track.scrollWidth - track.clientWidth;
+
+    let frameId: number;
+    const step = () => {
+      track.scrollLeft += dir * speedRef.current;
+
+      // wrap-around
+      if (!isArabic && track.scrollLeft >= maxScroll()) {
+        track.scrollLeft = 0;
+      } else if (isArabic && track.scrollLeft <= 0) {
+        track.scrollLeft = maxScroll();
+      }
+
+      frameId = requestAnimationFrame(step);
+    };
+
+    frameId = requestAnimationFrame(step);
+    return () => cancelAnimationFrame(frameId);
+  }, [isArabic]);
 
   return (
     <section
-      ref={ref}
-      className={`relative h-[400vh] bg-[var(--primary-black)] text-[var(--secondary-white)] ${fontClass} pb-10`}
+      className={`w-full overflow-hidden bg-[var(--primary-black)] text-theme ${fontClass} px-0 pt-20 pb-20 md:py-20`}
     >
-      {/* Sticky viewport frame */}
+      <h2 className="text-3xl md:text-5xl font-bold mb-20 text-center">
+        {t("home.featured.title")}
+      </h2>
+
       <div
-        dir="ltr"
-        className="sticky inset-x-0 top-1/4 md:top-0 md:h-screen overflow-hidden"
+        ref={trackRef}
+        onMouseEnter={handleMouseEnter}
+        onMouseLeave={handleMouseLeave}
+        className={`w-full flex gap-2 overflow-hidden ${
+          isArabic ? "flex-row-reverse" : ""
+        }`}
       >
-        <h2 className="text-3xl md:text-5xl font-bold text-theme my-10 md:pb-25 lg:my-10 text-center">
-          {t("home.featured.title")}
-        </h2>
-        {/* Horizontal rail */}
-        <motion.div style={{ x: trackX, width: trackWidth }} className="flex">
-          {works.map((work) => (
+        {extendedItems.map((work, index) => (
+          <div
+            key={`${work.id}-${index}`}
+            onClick={() => handleCardClick(work)}
+            className="w-[90vw] sm:w-[500px] md:w-[600px] lg:w-[650px] h-[64vw] sm:h-[400px] md:h-[450px] lg:h-[550px] rounded-2xl overflow-hidden relative cursor-pointer flex-shrink-0 bg-black"
+          >
+            {/* Video */}
+            <video
+              src={work.video}
+              autoPlay
+              muted
+              loop
+              playsInline
+              preload="metadata"
+              className="w-full h-full object-cover"
+            />
+
+            {/* Logo bottom (RTL/LTR aware) */}
             <div
-              key={work.id}
-              className="relative flex h-full md:h-[50vh] w-screen md:min-w-[100vw] lg:min-w-[100vw] flex-shrink-0 items-center justify-center px-4 sm:px-10 md:pl-[50px]"
+              className={`absolute bottom-4 z-10 ${
+                isArabic ? "left-5" : "right-5"
+              }`}
             >
-              <div className="relative w-full max-w-[90vw] md:max-w-[700px]">
-                {/* Logo and Label */}
-                <div className={`mb-3 flex flex-col items-center ${fontClass}`}>
-                  <img
-                    src={work.logo}
-                    alt={`${work.labelKey} logo`}
-                    className="w-30 h-30 md:w-40 md:h-40 object-contain"
-                  />
-                  <p className="text-lg md:text-xl font-semibold text-theme text-center">
-                    {t(`home.featured.label.${work.labelKey}`)}
-                  </p>
-                </div>
-
-                {/* Video */}
-                <video
-                  src={work.video}
-                  autoPlay
-                  muted
-                  loop
-                  playsInline
-                  className="aspect-video w-full rounded-2xl md:rounded-3xl object-cover shadow-2xl"
+              <div className="h-12 md:h-16 flex items-end">
+                <img
+                  src={work.logo}
+                  alt=""
+                  aria-hidden="true"
+                  className="max-h-full w-auto object-contain drop-shadow"
+                  draggable={false}
                 />
-
-                {/* Title overlay */}
-                <div
-                  className={`absolute bottom-2 md:bottom-4 ${
-                    isArabic
-                      ? "right-4 md:right-6 text-right"
-                      : "left-4 md:left-6 text-left"
-                  } text-base sm:text-lg md:text-2xl font-bold drop-shadow-sm ${fontClass}`}
-                >
-                  {t(`home.featured.items.${work.title}`)}
-                </div>
               </div>
             </div>
-          ))}
-        </motion.div>
+
+            {/* Title overlay (RTL → bottom-right, LTR → bottom-left) */}
+            <div
+              className={`absolute bottom-4 text-theme font-bold text-lg md:text-2xl ${fontClass} ${
+                isArabic ? "right-6 text-right" : "left-6 text-left"
+              } drop-shadow-sm`}
+            >
+              {t(`home.featured.items.${work.title}`, {
+                defaultValue: work.title,
+              })}
+            </div>
+          </div>
+        ))}
       </div>
     </section>
   );
